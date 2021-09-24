@@ -9,7 +9,8 @@ import time
 
 u="root"
 p="rahul"
-db="mini"
+db="mini"   # no change
+
 
 def get_datetime_today():
     date=str(datetime.today()).split()[0]

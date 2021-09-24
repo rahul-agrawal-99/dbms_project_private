@@ -1,0 +1,20 @@
+pip install mysql-connector-python
+
+create database mini ;
+
+mysql> desc  project_login;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | varchar(20) | NO   | PRI | NULL    |       |
+| password | varchar(20) | YES  |     | NULL    |       |
+| name     | varchar(30) | YES  |     | NULL    |       |
+| email    | varchar(35) | YES  |     | NULL    |       |
+| phone    | varchar(35) | YES  |     | NULL    |       |
+| bday     | date        | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+
+create table product_details (pid int , pname varchar(30) ,stock int , price int );
