@@ -24,8 +24,8 @@ def log():
             stat=f"Wrong password enterd for userID : {i} please Enter correct credential"
             return render_template('index.html' , status=True)
         else:
-            add=r'C:\Users\Rahul Agrawal\OneDrive\Desktop\python fun codes\Flask\DBMS mini project\templates\index.html'
-            return f"no user found as {i}   <button>Go back<a href='{add}'></a></button>"
+            return render_template('index.html' , status="invalidID")
+           
         
 @app.route("/newuser",methods=['POST','GET'])    
 def newuser():
@@ -68,6 +68,10 @@ def newuserlogin():
         return render_template('newuser.html' , status='Password id Blank')
     if status=='exist':
         return render_template('newuser.html' , status='UserID already Exist Please enter another')
+    if status=='blankbday':
+        return render_template('newuser.html' , status='Enter Birth Date')
+    if status=='blankname':
+        return render_template('newuser.html' , status='Enter Name')
     return render_template('index.html' , status='new')
        
 app.run(debug=True)  

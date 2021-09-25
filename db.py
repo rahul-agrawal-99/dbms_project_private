@@ -95,6 +95,12 @@ def insert_new_user(name,email,phone,bday,userid,pas):  #data stored in  Flask_d
     c=connect("localhost",u,p,db)
     q=f"select id from project_login where id='{userid}'"
     status=print_val(c,q)
+    if(len(name)==0):
+        return 'blankname'
+    
+    if(len(bday)==0):
+        return 'blankbday'
+    
     if(userid==""):
         return 'blanku'
     if(pas==""):

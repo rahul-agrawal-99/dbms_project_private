@@ -1,0 +1,19 @@
+
+requirements==>  Mysql   python 3
+
+
+
+run on bash :
+
+pip install -r requirements.txt
+
+####################################################
+in mysql database Run following commands:
+
+create database mini;
+
+create table project_login( id varchar(20),password  varchar(20),name varchar(30) email varchar(35),phone varchar(35) ,bday date ,age  int);
+
+###################################################
+
+in db.py  change "u" and "p"  variable with your own respective login id and password
