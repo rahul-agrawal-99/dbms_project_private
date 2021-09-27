@@ -2,8 +2,7 @@ import mysql
 from  mysql import connector
 import _mysql_connector
 from mysql.connector import Error
-import pandas as pd
-import random
+
 from datetime import datetime
 import time
 
@@ -73,6 +72,30 @@ def login():
     q='select * from project_login'
     r=print_val(c,q)
     return r
+def get_card_details(id):     
+    db="mini"
+    c=connect("localhost",'root','rahul',db)
+    q=f"select * from card_details where cid='{id}'"
+    r=print_val(c,q)
+    return r
+  
+def get_name(id):     
+    db="mini"
+    c=connect("localhost",'root','rahul',db)
+    q=f"select name from project_login where id='{id}'"
+    print(q)
+    r=print_val(c,q)
+    
+    return r[0][0]
+  
+def get_accound(id):     
+    db="mini"
+    c=connect("localhost",'root','rahul',db)
+    q=f"select id,name,email,phone,bday,age from project_login where id='{id}'"
+    print(q)
+    r=print_val(c,q)
+    
+    return r[0]
   
         
 def check_login(i,pas):  #data stored in  Flask_data 
@@ -112,6 +135,12 @@ def insert_new_user(name,email,phone,bday,userid,pas):  #data stored in  Flask_d
     print('age is',age)
     q=f"insert into project_login values ('{userid}','{pas}','{name}','{email}','{phone}','{bday}',{age})"
    
+    execute_query(connect("localhost",u,p,db),q)
+    commit(connect("localhost",u,p,db))
+    
+def insert_new_card(cid,cno,cvv,bal): 
+    q=f"insert into card_details values ('{cid}','{cno}','{cvv}','{bal}')"
+    print(q)
     execute_query(connect("localhost",u,p,db),q)
     commit(connect("localhost",u,p,db))
     

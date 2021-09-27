@@ -13,6 +13,59 @@ in mysql database Run following commands:
 create database mini;
 
 create table project_login( id varchar(20),password  varchar(20),name varchar(30) email varchar(35),phone varchar(35) ,bday date ,age  int);
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | varchar(20) | NO   | PRI | NULL    |       |
+| password | varchar(20) | YES  |     | NULL    |       |
+| name     | varchar(30) | YES  |     | NULL    |       |
+| email    | varchar(35) | YES  |     | NULL    |       |
+| phone    | varchar(35) | YES  |     | NULL    |       |
+| bday     | date        | YES  |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+create table product_details(pid int ,pname varchar(30) ,stock int, price int);
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| pid   | int         | YES  |     | NULL    |       |
+| pname | varchar(30) | YES  |     | NULL    |       |
+| stock | int         | YES  |     | NULL    |       |
+| price | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+create table card_details(cid varchar(20),card_no BIGINT NOT NULL , cvv int NOT NULL , FOREIGN KEY (cid) REFERENCES project_login(id) , card_balance int ) ;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| cid          | varchar(20) | YES  | MUL | NULL    |       |
+| card_no      | bigint      | NO   |     | NULL    |       |
+| cvv          | int         | NO   |     | NULL    |       |
+| card_balance | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+create table complate_orders (order_id int , product_id int );
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| order_id   | int  | YES  |     | NULL    |       |
+| product_id | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+
+create table transaction_history (order_id int ,cid varchar(30) , total_amount int  );
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| order_id     | int         | YES  |     | NULL    |       |
+| cid          | varchar(30) | YES  |     | NULL    |       |
+| total_amount | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+
+Trigger on card amount deduction
+
+
 
 ###################################################
 

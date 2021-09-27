@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Manage Payments</title>
+</head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Document</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+<style>
+    #pay{
+        margin-top: 20px;
+        text-align: center;
+        border: 3px;
+        border-style:double;
+        border-radius: 25px;
+    
+        font-size: 30px;
+        margin-left: 100px;
+        margin-right: 100px;
+        background-color: aqua;
+
+    }
+    
+</style>
+<body>
+
+    <div id='pay'><b>Manage Payments</b> </div>
+
+   <br><br>
+{% if status == "No card added Yet" %}
+<br><br>
+<b>
+ <p style="margin-left: 20%;font-size:30px">  {{status}}</p>  </b>
+{% else %}
+    
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Card - No</th>
+            <th scope="col">Reamaing Balance</th> 
+         
+          
+          </tr>
+        </thead>
+        <tbody>
+         
+            {% for i in status %}
+          <tr>
+            <th scope="row" >#</th>
+            
+              <td>{{i[1]}}</td>
+             
+              <td>₹{{i[3]}}</td>
+            
+              
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    
+{% endif %}
+
+<br>
+
+<div style="float: left;width:23%;margin-left:10%"><form action='\add_card_render' style="float: right; margin-right:100px">
+    <button type="submit" class="btn btn-outline-primary" >+ Add Card</button>
+</form></div>
+ 
+    
+</body>
+</html>
