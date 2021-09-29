@@ -35,6 +35,9 @@
 
    <br><br>
 {% if status == "No card added Yet" %}
+<div style="float: left;width:23%;margin-left:10%"><form action='\add_card_render' style="float: right; margin-right:100px">
+  <button type="submit" class="btn btn-outline-primary" >+ Add Card</button>
+</form></div>
 <br><br>
 <b>
  <p style="margin-left: 20%;font-size:30px">  {{status}}</p>  </b>
@@ -45,7 +48,7 @@
           <tr>
             <th scope="col"></th>
             <th scope="col">Card - No</th>
-            <th scope="col">Reamaing Balance</th> 
+            <th scope="col">Available Balance</th> 
          
           
           </tr>
@@ -70,9 +73,7 @@
 
 <br>
 
-<div style="float: left;width:23%;margin-left:10%"><form action='\add_card_render' style="float: right; margin-right:100px">
-    <button type="submit" class="btn btn-outline-primary" >+ Add Card</button>
-</form></div>
+
  
     
 </body>

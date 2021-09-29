@@ -1,0 +1,36 @@
+create database mini;
+use mini
+
+
+
+
+
+create table project_login( id varchar(20),password  varchar(20),name varchar(30) ,email varchar(35),phone varchar(35) ,bday date ,age  int , PRIMARY KEY (id));
+create table product_details(pid int ,pname varchar(30) ,stock int, price int , PRIMARY KEY (pid) ,CHECK (stock>=0));
+create table card_details(cid varchar(20),card_no BIGINT NOT NULL , cvv int NOT NULL , FOREIGN KEY (cid) REFERENCES project_login(id) , card_balance int ) ;
+create table complate_orders (order_id int , product_id int );
+create table transaction_history (order_id int ,cid varchar(30) , total_amount int  ,transaction_time varchar(30) ,PRIMARY KEY (order_id));
+create table card_history(card_no bigint , updated_balance int , transaction_time varchar(30), by_user varchar(30));
+delimiter //
+ create trigger amount_deduct after update on card_details for
+ each row
+ begin
+ insert into card_history values(new.card_no,new.card_balance,current_timestamp ,new.cid );
+ end;//
+delimiter ;
+
+insert into product_details values (1,'fogg deo',78,45);
+insert into product_details values (2,'himalaya pimple clear',9,75);
+insert into product_details values (3,'parachute coconut oil',60,80);
+insert into product_details values (4,'pears soap',70,20);
+insert into product_details values (5,'pepsodent paste',12,65);
+insert into product_details values (6,'ponds powder',8,55);
+insert into product_details values (7,'toothbrush ',89,15);
+insert into product_details values (8,'corn flakes',7,145);
+insert into product_details values (9,'indo noodles 500g pack',3,225);
+insert into product_details values (10,'coca-cola 500ml',32,65);
+
+select * from product_details;
+select * from transaction_history;
+select * from complate_orders;
+select * from card_details;

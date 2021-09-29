@@ -9,7 +9,11 @@ import time
 u="root"
 p="rahul"
 db="mini"   # no change
+import random
 
+
+def generate_order_id():
+    return random.randint(0,99999999)
 
 def get_datetime_today():
     date=str(datetime.today()).split()[0]
@@ -78,15 +82,56 @@ def get_card_details(id):
     q=f"select * from card_details where cid='{id}'"
     r=print_val(c,q)
     return r
+def get_cvv(crd):     
+    db="mini"
+    c=connect("localhost",'root','rahul',db)
+    q=f"select cvv from card_details where card_no='{crd}'"
+    r=print_val(c,q)
   
+    return r[0][0]
+
+def make_payment(crd_no ,payable_amout):
+    db="mini"
+    c=connect("localhost",'root','rahul',db)
+    q=f"select card_balance from card_details where card_no='{crd_no}'"
+    r=print_val(c,q)
+    card_bal =r[0][0]
+    if (card_bal < payable_amout):
+        return False
+    else:
+        card_bal = int(card_bal)
+        upadted_card_bal=card_bal-payable_amout
+        q=f"update card_details set card_balance = {upadted_card_bal} where card_no='{crd_no}'"
+        execute_query(connect("localhost",u,p,db),q)
+        commit(connect("localhost",u,p,db))
+        print(" upadted_card_bal = ",card_bal,"-",payable_amout , "= ",upadted_card_bal)
+        return upadted_card_bal
+        
+def transaction(oid,cid,amount):
+    d,t=get_datetime_today()
+    r=d+" "+t
+    q=f"insert into transaction_history values ({oid},'{cid}',{amount},'{r}')"
+    execute_query(connect("localhost",u,p,db),q)
+    commit(connect("localhost",u,p,db))   
+
 def get_name(id):     
     db="mini"
     c=connect("localhost",'root','rahul',db)
     q=f"select name from project_login where id='{id}'"
-    print(q)
+
     r=print_val(c,q)
     
     return r[0][0]
+  
+def get_product_name():   
+    db="mini"
+    c=connect("localhost",'root','rahul',db)
+    q=f"select pname,stock,price from product_details "
+ 
+    r=print_val(c,q)
+    return r
+   
+          
   
 def get_accound(id):     
     db="mini"
@@ -132,6 +177,8 @@ def insert_new_user(name,email,phone,bday,userid,pas):  #data stored in  Flask_d
         print('userID already exist ')
         return 'exist'
     age=get_age(bday)
+    if(age<15):
+        return 'noage'
     print('age is',age)
     q=f"insert into project_login values ('{userid}','{pas}','{name}','{email}','{phone}','{bday}',{age})"
    
@@ -143,4 +190,31 @@ def insert_new_card(cid,cno,cvv,bal):
     print(q)
     execute_query(connect("localhost",u,p,db),q)
     commit(connect("localhost",u,p,db))
+    
+def get_product_id():   
+    db="mini"
+    c=connect("localhost",'root','rahul',db)
+    q=f"select pid from product_details "
+ 
+    r=print_val(c,q)
+    return r
+
+def update_orders(pr,oid):
+    print("recieved p:",p,"\n oid :",oid)
+    s=get_product_id()
+    print('Got Product id as :',s)
+    for c,i in enumerate(pr):
+        if i!=0:
+            q=f"update product_details set stock = stock-{i} where pid={c+1}"
+            print("Executing Query As :",q)
+            execute_query(connect("localhost",u,p,db),q)
+            commit(connect("localhost",u,p,db))
+            
+            q=f"insert into complate_orders values ({oid},{c+1})"
+            print("Executing Query As :",q)
+            execute_query(connect("localhost",u,p,db),q)
+            commit(connect("localhost",u,p,db))
+            
+            
+
     

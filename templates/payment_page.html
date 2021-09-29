@@ -49,7 +49,7 @@
     {% endif %}
     <br><br>
 
-    <form action="/pay"  method="post">
+    <form action="/payment"  method="post">
     <div id='or'>
 
         <div style="width: 48%; float:left ; margin-left:20px">
@@ -62,15 +62,15 @@
             <p>Enter CVV    :</p>
             <p>Enter OTP   :</p>
          </div>
-         
+        
          <div style="width: 50%; float:right ">
     
             <p> {{cid}}</p>
             <p> {{order_id}}</p>
             <p>{{total_amount}}</p>
             <p>{{card_no}}</p>
-            <p><input type="text" class="form-control" placeholder="CVV" required="required" id="cvv" name="cvv" style="width :20% ; margin-left:250px"></p>
-            <p><input type="text" class="form-control" placeholder="OTP" required="required" id="otp" name="otp" style="width :20% ;margin-left:250px"></p>
+            <p><input type="number" min='000' max='999' class="form-control" placeholder="CVV" required="required" id="cvv" name="cvv" style="width :20% ; margin-left:250px"></p>
+            <p><input type="number" class="form-control" placeholder="OTP" required="required" id="otp" name="otp" style="width :20% ;margin-left:250px"></p>
          </div>
          <br><br><br><br><br><br>
          

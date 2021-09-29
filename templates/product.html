@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Page</title>
+    <style>
+    .container{
+        display: grid;
+        /* grid-template-columns: 300px 100px 100px; */
+        /* grid-template-columns: 300px auto 100px; */
+        /* grid-template-columns: 1fr 4fr 1fr; */
+        grid-template-columns: repeat(2, auto);
+        grid-gap: 2rem;
+    }
+    .item{
+        /* height: 100px;
+        width: 100px; */
+        background-color: rgb(218, 211, 211);
+        border: 2px solid black;
+        padding: 15px 5px;
+        margin-top: 2%;
+        margin-left: 10%;
+        margin-right: 10%;
+        
+        height: 400px;
+    }
+    img{
+        margin-left: 100px;
+        margin-right: 150px;
+        width: 300px;
+        height:300px;
+    }
+    .am{
+        margin-left: 35%;
+        font-size: larger;
+    }
+    .ama{
+        margin-left: 40%;
+    }
+    #login{
+        float: right;
+        margin-top: 5%;
+        width: 30%;
+        height: 55px;
+      
+    }
+    .footer {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        margin-right: 2%;
+        margin-bottom: 1%;
+        background-color: rgb(255, 0, 0);
+        border: 2px solid black;
+        text-align: center;
+        font-size: 40px;
+     }
+
+     #yu{
+         width: 50px;
+     }
+
+    </style>
+
+  
+   
+  
+
+
+</head>
+<body>
+   
+
+    <div style="border: 2px black solid; position:fixed; width:98%;height:45px;background-color:rgb(111, 238, 6);border-radius: 15px;">  
+        <b style="font-size: 40px;">   <marquee behavior='' direction='left' style="float: left;width:90%">Online Shop Management </marquee>  </b>  
+      <form action='\' style="float: right; margin-right:80px">
+            <button type="submit" id='yu' >Log Out</button>
+        </form>
+        </div>
+    
+<br><br>
+
+    <form action='/cart' method='post'>
+    <div class="container">
+
+        {% for i in range(jk|length) %}
+            
+        
+        <div class="item">     <b>
+            
+            <img src='/static/assets/images/{{i+1}}.jpg' alt=''>
+            <label for='product' class='am'>{{jk[i][0]}}</label>
+            <p>
+            <input type="number" class='ama' name='{{i+1}}' id='{{i+1}}' min="0" max='{{jk[i][1]}}' value="0" style="width: 60px;height:20px"></p>
+            <p> <label for='price' style="text-align: center;margin-left:30%"> Price : {{jk[i][2]}} &nbsp;&nbsp;   &nbsp; Available Quantity : {{jk[i][1]}}</label></p>
+     </b>
+        </div>
+        {% endfor %}
+
+        <p></p>
+        <p></p>
+        <p></p>
+   
+   
+    
+    </div>
+   
+        <button type="submit" id="login" class="footer"  class="btn btn-outline-success btn-lg" >
+            
+            Checkout cart</button>
+        
+       
+
+
+   
+</form>
+</body>
+</html>
