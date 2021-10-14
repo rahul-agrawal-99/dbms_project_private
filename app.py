@@ -1,11 +1,11 @@
+import os
 from flask import Flask , render_template , redirect ,request
-from flask.helpers import url_for
-
+from werkzeug.utils import secure_filename
 import db
 app = Flask(__name__)
 
-cid={}
-total_p =0
+cid={}   # stores current user id 
+total_p =0   # total purchase amount by user
 
 
 @app.route("/",methods=['POST','GET'])
@@ -24,7 +24,6 @@ def log():
             cid['name']=db.get_name(i)
             return render_template('customer_login.html' , cid=cid['id'] ,cname=cid['name'])
         elif valid=='no':
-            stat=f"Wrong password enterd for userID : {i} please Enter correct credential"
             return render_template('index.html' , status=True)
         else:
             return render_template('index.html' , status="invalidID")
@@ -66,16 +65,66 @@ def adminlog():
         i = request.form['id']   
         p = request.form['pass']
     if(i=='root' and p=='rahul'):
-        return render_template('login_table.html' , val=db.login())    
-    return ' unsuccess'
+        return render_template('admin_login.html' )    
+  
+    return ' <h1 style="text-align:center"> Authentication Failed </h1>'
+
+@app.route("/project_login_table",methods=['POST','GET'])    
+def proadminlog():
+    return render_template('login_table.html' , val=db.login())    
+  
+@app.route("/go_back",methods=['POST','GET'])    
+def back():
+    return render_template('admin_login.html' )   
+  
+@app.route("/product_admin",methods=['POST','GET'])    
+def adminprod():
+    products = db.get_product_name()
+    pid = products[len(products)-1][3]+1
+    if request.method == 'POST':
+        pname = request.form['pname']   
+        price = request.form['price']   
+        quanity = request.form['quantity']  
+        img = request.files.get('imagefile', '')
+        path =r'\static\assets\images'
+        img.save(os.path.join(os.getcwd() + path , secure_filename(f'{pid}' + '.jpg')))
+        db.insert_new_product(pid , pname , price , quanity)  
+    return render_template('add_product.html' , prod = db.get_product_name())   
+
+ 
+@app.route("/add_product",methods=['POST','GET'])    
+def addprod():
+    products = db.get_product_name()
+    pid = products[len(products)-1][3]+1
+    return render_template('add_new_prod.html' , pid = pid)    
+  
+@app.route('/update_prod/<int:id>')
+def update_prod(id):
+    pr =db.get_product_details_by_id(id)
+    return render_template('update_prod.html' , pid = id ,pname =pr[0] , price = pr[2] ,stock =pr[1])
+
+
+@app.route('/success_update/<int:id>' ,methods=['POST','GET'])
+def update_prod_success(id):
+    pid =id
+    if request.method == 'POST':
+        uprice = request.form['uprice']   
+        uquanity = request.form['ustock'] 
+        db.update_prod(pid,uprice ,uquanity)
+    return redirect("/product_admin")
+
+@app.route('/transaction')
+def trans():
+ 
+    return render_template('transaction.html' , t=db.get_transaction_details())    
 
 
 
 
            
-tp=[]
+tp=[]   # total price corresponding to p[]
 
-p=[]
+p=[]   # it has list of products in cart , index +1 represents corresponding pid quantity 
 
 @app.route("/cart",methods=['POST','GET'])    
 def cart():
@@ -90,13 +139,11 @@ def cart():
         return render_template('empty_cart.html' )
     else:
         total_p=0
-        # print("prod is ",prod)
         counter=0
         for i in prod:
             p.append(i)
-            # print("total_p is ",total_p)
+            # print("total_p is ",p)
             if(i!=0):
-                # print(" ***** adding ",s[counter][2]*i)
                 total_p = total_p+s[counter][2]*i 
                 counter=counter+1
             else:
@@ -115,7 +162,6 @@ def pay():
     if (len(crd)==0):
          return render_template('add_card.html' ,status="Please add Card , You Didnt saved any card")
     print("Using  card no :",crd[0][1])
-    # print("tp is ",tp)
     order_id.append(db.generate_order_id())
     return render_template('payment_page.html' , cid=cid['id'] , card_no=crd[0][1] ,total_amount=tpl, order_id =order_id[len(order_id)-1] )
 
@@ -126,14 +172,10 @@ def payment():
     l=len(tp)
     tpl=tp[l-1]
     crd=db.get_card_details(cid['id'])
-    # print("card i crd:",crd)
     if request.method=='POST':
         cvv= request.form['cvv']
         otp= request.form['otp']
     actual_cvv = db.get_cvv(crd[0][1])
-    # print("get cvv is",actual_cvv)
-    # print("eneter cvv is",cvv)
- 
     if (actual_cvv !=int(cvv)):
         return render_template('payment_page.html' , cid=cid['id'] , card_no=crd[0][1] ,total_amount=tpl, order_id =order_id[len(order_id)-1] ,stat = "CVV Entered is Wrong")  
     if otp=="1234":
@@ -143,7 +185,9 @@ def payment():
         db.transaction(order_id[len(order_id)-1],cid['id'],tpl)
         o=order_id[len(order_id)-1]
         db.update_orders(p,o)
-        return render_template('success.html' , total_pay = tpl , card_balance = new_bal ,order_id =order_id[len(order_id)-1] ,card_no=crd[0][1] ) 
+        products =db.purchased_products(p)
+        print("taken products :",products)
+        return render_template('success.html' , total_pay = tpl , card_balance = new_bal ,order_id =order_id[len(order_id)-1] ,card_no=crd[0][1] ,products = products ) 
     print(cvv,otp)
     return render_template('payment_page.html' , cid=cid['id'] , card_no=crd[0][1] ,total_amount=tpl, order_id =order_id[len(order_id)-1] ,stat = "Wrong Otp Entered")
     
@@ -157,7 +201,6 @@ def newuserlogin():
       bday=request.form['birthday']
       userid = request.form['userid']
       pas = request.form['pas']
-    #   print(name,email,phone,bday,userid,pas)
       status=db.insert_new_user(name,email,phone,bday,userid,pas)
     if status=='blanku':
         return render_template('newuser.html' , status='Blank UserID Not allowed')
@@ -204,4 +247,5 @@ def add_card():
 
 
 
-app.run(debug=True)  
+app.run(debug=True , port=8080 )            # for Production
+# app.run(debug=True)          # for testing

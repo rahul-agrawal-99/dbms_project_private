@@ -113,6 +113,13 @@ def transaction(oid,cid,amount):
     q=f"insert into transaction_history values ({oid},'{cid}',{amount},'{r}')"
     execute_query(connect("localhost",u,p,db),q)
     commit(connect("localhost",u,p,db))   
+    
+    
+def update_prod(pid,price ,stock):
+    q=f" update product_details set stock={stock} ,price ={price} where pid={pid}"
+    print(q)
+    execute_query(connect("localhost",u,p,db),q)
+    commit(connect("localhost",u,p,db))   
 
 def get_name(id):     
     db="mini"
@@ -126,7 +133,22 @@ def get_name(id):
 def get_product_name():   
     db="mini"
     c=connect("localhost",f'{u}','rahul',db)
-    q=f"select pname,stock,price from product_details "
+    q=f"select pname,stock,price,pid from product_details "
+ 
+    r=print_val(c,q)
+    return r
+def get_product_details_by_id(id):   
+    db="mini"
+    c=connect("localhost",f'{u}','rahul',db)
+    q=f"select pname,stock,price from product_details where pid={id}"
+ 
+    r=print_val(c,q)
+    return r[0]
+
+def get_transaction_details():   
+    db="mini"
+    c=connect("localhost",f'{u}','rahul',db)
+    q=f"select * from transaction_history "
  
     r=print_val(c,q)
     return r
@@ -191,6 +213,13 @@ def insert_new_card(cid,cno,cvv,bal):
     execute_query(connect("localhost",u,p,db),q)
     commit(connect("localhost",u,p,db))
     
+    
+def insert_new_product(pid , pname , price , stock): 
+    q=f"insert into  product_details values ('{pid}','{ pname}','{stock}','{price}')"
+    print(q)
+    execute_query(connect("localhost",u,p,db),q)
+    commit(connect("localhost",u,p,db))
+    
 def get_product_id():   
     db="mini"
     c=connect("localhost",f'{u}','rahul',db)
@@ -215,6 +244,14 @@ def update_orders(pr,oid):
             execute_query(connect("localhost",u,p,db),q)
             commit(connect("localhost",u,p,db))
             
-            
+
+def purchased_products(plist):
+    li=[]   # list contains productname , total price corresponding to product , quantity purchased
+    for index ,i in enumerate(plist):
+        if i!=0:
+            b=get_product_details_by_id(index+1)
+            li.append((b[0] , b[2]*i ,i))
+        
+    return li          
 
     
