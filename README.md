@@ -16,8 +16,8 @@ mysql-connector-python == 8.0.26</br>
 
 </br></br>
 
-<b> Front End Look </b> </br>
-<img src="https://github.com/rahul-agrawal-99/dbms_project/blob/master/image.png" width="80%">
+<b> Front End Look Login Page </b> </br>
+<img src="https://github.com/rahul-agrawal-99/dbms_project/blob/master/readmeReq/login.jpg" width="80%">
 
 <b> Add New User </b> </br>
 <img src="https://github.com/rahul-agrawal-99/dbms_project/blob/master/readmeReq/newuser.jpg" width="80%">
@@ -25,3 +25,7 @@ mysql-connector-python == 8.0.26</br>
 
 <b> cart </b> </br>
 <img src="https://github.com/rahul-agrawal-99/dbms_project/blob/master/readmeReq/cart.jpg" width="80%">
+
+
+<b> bill generated after purchase </b> </br>
+<img src="https://github.com/rahul-agrawal-99/dbms_project/blob/master/readmeReq/sample_bill_pdf.jpg" width="80%">
