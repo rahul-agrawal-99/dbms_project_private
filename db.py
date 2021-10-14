@@ -72,19 +72,19 @@ def print_val(c,q):
         
 def login():     
     db="mini"
-    c=connect("localhost",'root','rahul',db)
+    c=connect("localhost",f'{u}','rahul',db)
     q='select * from project_login'
     r=print_val(c,q)
     return r
 def get_card_details(id):     
     db="mini"
-    c=connect("localhost",'root','rahul',db)
+    c=connect("localhost",f'{u}','rahul',db)
     q=f"select * from card_details where cid='{id}'"
     r=print_val(c,q)
     return r
 def get_cvv(crd):     
     db="mini"
-    c=connect("localhost",'root','rahul',db)
+    c=connect("localhost",f'{u}','rahul',db)
     q=f"select cvv from card_details where card_no='{crd}'"
     r=print_val(c,q)
   
@@ -92,7 +92,7 @@ def get_cvv(crd):
 
 def make_payment(crd_no ,payable_amout):
     db="mini"
-    c=connect("localhost",'root','rahul',db)
+    c=connect("localhost",f'{u}','rahul',db)
     q=f"select card_balance from card_details where card_no='{crd_no}'"
     r=print_val(c,q)
     card_bal =r[0][0]
@@ -116,7 +116,7 @@ def transaction(oid,cid,amount):
 
 def get_name(id):     
     db="mini"
-    c=connect("localhost",'root','rahul',db)
+    c=connect("localhost",f'{u}','rahul',db)
     q=f"select name from project_login where id='{id}'"
 
     r=print_val(c,q)
@@ -125,7 +125,7 @@ def get_name(id):
   
 def get_product_name():   
     db="mini"
-    c=connect("localhost",'root','rahul',db)
+    c=connect("localhost",f'{u}','rahul',db)
     q=f"select pname,stock,price from product_details "
  
     r=print_val(c,q)
@@ -135,7 +135,7 @@ def get_product_name():
   
 def get_accound(id):     
     db="mini"
-    c=connect("localhost",'root','rahul',db)
+    c=connect("localhost",f'{u}','rahul',db)
     q=f"select id,name,email,phone,bday,age from project_login where id='{id}'"
     print(q)
     r=print_val(c,q)
@@ -193,7 +193,7 @@ def insert_new_card(cid,cno,cvv,bal):
     
 def get_product_id():   
     db="mini"
-    c=connect("localhost",'root','rahul',db)
+    c=connect("localhost",f'{u}','rahul',db)
     q=f"select pid from product_details "
  
     r=print_val(c,q)
