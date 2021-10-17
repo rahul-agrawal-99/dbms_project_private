@@ -34,4 +34,4 @@ mysql-connector-python == 8.0.26</br>
 
 
 <b> ER Diagram for designed Database </b> </br>
-<img src="https://github.com/rahul-agrawal-99/dbms_project/blob/master/readmeReq/ER.jpeg" width="80%">
+<img src="https://github.com/rahul-agrawal-99/dbms_project/blob/master/readmeReq/ER.png" width="80%">
