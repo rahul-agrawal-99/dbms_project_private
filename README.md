@@ -30,3 +30,8 @@ mysql-connector-python == 8.0.26</br>
 
 <b> bill generated after purchase </b> </br>
 <img src="https://github.com/rahul-agrawal-99/dbms_project/blob/master/readmeReq/sample_bill_pdf.jpg" width="80%">
+
+
+
+<b> ER Diagram for designed Database </b> </br>
+<img src="https://github.com/rahul-agrawal-99/dbms_project/blob/master/readmeReq/ER.jpeg" width="80%">
