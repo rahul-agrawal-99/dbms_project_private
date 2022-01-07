@@ -245,7 +245,8 @@ def add_card():
     return render_template('customer_login.html' , status=c)
 
 
+if __name__ == "__main__":
+    app.run(debug=True, port=8000)
 
-
-app.run()            # for Production
+# app.run()            # for Production
 # app.run(debug=True)          # for testing
