@@ -247,5 +247,5 @@ def add_card():
 
 
 
-app.run(debug=True , port=8080 )            # for Production
+app.run(host='0.0.0.0' , port=8080 )            # for Production
 # app.run(debug=True)          # for testing
