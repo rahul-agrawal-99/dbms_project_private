@@ -1,7 +1,7 @@
-import mysql
-from  mysql import connector
-import _mysql_connector
-from mysql.connector import Error
+import sqlite3
+
+
+
 
 from datetime import datetime
 import time
@@ -37,26 +37,25 @@ def get_age(b):
 def connect(hname,uname,upassword,dbname):
     connection=None
     try:
-        connection=mysql.connector.connect(host=hname,user=uname,password=upassword,database=dbname,auth_plugin='mysql_native_password')
-        print("connection Successful")
-    except Error as e:
-        print(f"Error ocuured {e}")
+        connection = sqlite3.connect("project.db")
+    except Exception as e:
+        print(f"Exception ocuured {e}")
     return connection
 
 def execute_query(connection,query):
-    c=connection.cursor()
+    cursor = connection.cursor()
     try:
-        c.execute(query)
+        cursor.execute(query)
         print("query executed As: ",query)
         commit(connection)
-    except Error as e:
+    except Exception as e:
         print(e)
 
 def commit(connection):
     try:
         connection.commit()
         print("commited success")
-    except Error as e:
+    except Exception as e:
         print(e)
         
 
@@ -67,7 +66,7 @@ def print_val(c,q):
         r=c1.fetchall()
         return r
         # print("query executed As: ",query)
-    except Error as e:
+    except Exception as e:
         print(e)
         
 def login():     

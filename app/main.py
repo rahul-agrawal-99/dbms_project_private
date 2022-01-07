@@ -1,7 +1,7 @@
 import os
 from flask import Flask , render_template , redirect ,request
 from werkzeug.utils import secure_filename
-import db
+import app.db as db
 app = Flask(__name__)
 
 cid={}   # stores current user id 
