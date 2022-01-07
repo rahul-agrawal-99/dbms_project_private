@@ -1,7 +1,7 @@
 import os
 from flask import Flask , render_template , redirect ,request
 from werkzeug.utils import secure_filename
-import app.db as db
+import db as db
 app = Flask(__name__)
 
 cid={}   # stores current user id 
@@ -247,5 +247,5 @@ def add_card():
 
 
 
-# app.run(host='0.0.0.0' , port=8080 )            # for Production
+app.run()            # for Production
 # app.run(debug=True)          # for testing
