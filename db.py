@@ -198,8 +198,8 @@ def insert_new_user(name,email,phone,bday,userid,pas):  #data stored in  Flask_d
         print('userID already exist ')
         return 'exist'
     age=get_age(bday)
-    if(age<15):
-        return 'noage'
+    # if(age<15):
+    #     return 'noage'
     print('age is',age)
     q=f"insert into project_login values ('{userid}','{pas}','{name}','{email}','{phone}','{bday}',{age})"
    

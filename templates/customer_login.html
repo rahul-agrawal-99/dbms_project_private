@@ -10,61 +10,126 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
 
-/* Create two equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
+  .row{
+  
+    align-content: center;
+    margin-top: 1%;
+  }
+  #row1{
+  
+    margin-left: 5%;
+    width: 90%;
+  }
+  #row2{
+  
+    margin-left: 5%;
+    margin-top: 10%;
+    width: 90%;
+  }
+  .bt{
+    float: left;
+    margin-left: 2%;
+    width: 31%;
 
-h2{
-    font-size: 40px;
-    margin-left:100px;
-}
-
-
-
+    
+  }
 
 
 </style>
 </head>
 <body>
 
-    <div>
 
-
-<div class="row">
-  <div class="column" >
-    <h2>Welcome {{cname}}</h2>
-   
+  
+  <div class='row'>
+    <div id='row1'>
+      
+      <div style="width: 100%;">
+        <div style="width: 75%; float: left; ">
+          <h4 style="font-size: 180%;float:left ;margin-top:2% ;margin-left:5%">Welcome {{cname}}</h4>
+        </div>
+      
+        <div style="width: 25%; float: left;">
+          
+      
+            <a href="\" class="btn btn-info" role="button" style="float: right; margin-top:5% ;margin-right:5%">Log Out</a>
+        </div>
+    
+      </div> 
+      
+    </div>
+    <div id='row2'>
+      <div class='bt'><a href="\card" class="btn btn-outline-info" role="button">Manage Payments</a></div>
+<div class='bt'><a href="\product_page" class="btn btn-outline-success" role="button">Continue Shopping</a></div>
+<div class='bt'><a href="\get_acc_deatils" class="btn btn-outline-secondary" role="button">Account Details</a></div>
+      
+    </div>
+    
   </div>
-  <div class="column" >
-    <form action='\' style="float: right; margin-right:100px">
-        <button type="submit" class="btn btn-danger" >Log Out</button>
-    </form>
+
+
+
+<!-- <div style="width: 100%;">
+    <div style="width: 75%; float: left; padding-right:20px;">
+      <h4 style="font-size: 180%;float:left ;margin-top:2% ;margin-left:5%">Welcome {{cname}}</h4>
+    </div>
+  
+    <div style="width: 25%; float: left;">
+      
+  
+        <a href="\" class="btn btn-info" role="button" style="float: right; margin-top:5% ;margin-right:5%">Log Out</a>
+    </div>
+
+  </div>  -->
+
+<!-- 
+  
+  <div class="header" >
+    <h4 style="font-size: 180%;float:left ; width:80%">Welcome {{cname}}</h4>
+    
+    <div style="float:right">
+      <a href="\" class="btn btn-info" role="button">Log Out</a>
+  
+    </div>
   </div>
-</div>
-</div>
+  
+</div> -->
 
-<br>
 
-<p>
-<div style="float: left;width:23%;margin-left:10%"><form action='\card' style="float: right; margin-right:100px">
-    <button type="submit" class="btn btn-outline-info" >Manage Payments</button>
-</form></div>
-<div style="float: left;width:23%"><form action='\product_page' style="float: right; margin-right:100px">
-    <button type="submit" class="btn btn-outline-success" >Continue Shopping</button>
-</form></div>
-<div style="float: left;width:23%"><form action='\get_acc_deatils' style="float: right; margin-right:100px">
-    <button type="submit" class="btn btn-outline-secondary" >Account Details</button>
-</form></div>
+<!-- <div class='box' style="margin-top: 10em;width:100%">
 
-</p>
+<div class='bt'><a href="\card" class="btn btn-outline-info" role="button">Manage Payments</a></div>
+<div class='bt'><a href="\product_page" class="btn btn-outline-success" role="button">Continue Shopping</a></div>
+<div class='bt'><a href="\get_acc_deatils" class="btn btn-outline-secondary" role="button">Account Details</a></div>
+
+</div> -->
+
+
+
+
+
+<!-- <div style="margin-top: 30%;">
+  <div style="width: 35%; float: left;align-items:center">
+    <a href="\card" class="btn btn-outline-info" role="button">Manage Payments</a>
+  </div>
+  
+  <div style="width: 33%; float: left;align-items:center">
+    <a href="\product_page" class="btn btn-outline-success" role="button">Continue Shopping</a>
+
+    
+  </div>
+  
+  
+  <div style="width: 25%; float: left;align-items:center">
+    <a href="\get_acc_deatils" class="btn btn-outline-secondary" role="button">Account Details</a>
+    
+  </div>
+</div> -->
+
+
+
+
 
 
 

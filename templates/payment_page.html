@@ -36,7 +36,34 @@
         margin-right: 150px;
 
     }
-   
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 40%;
+        padding: 10px;
+        height: 1%;
+        /* Should be removed. Only for demonstration */
+        margin-left: 5%;
+        margin-bottom: 1%;
+
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+
+        display: table;
+        clear: both;
+    }
+    p{
+        text-align: center;
+    }
+    input{
+        border: 2px black dashed;
+    }
 </style>
 <body>
     <div id='pay'><b>Payment Details</b> </div>
@@ -50,7 +77,68 @@
     <br><br>
 
     <form action="/payment"  method="post">
-    <div id='or'>
+
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Customer ID   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 5%;">
+               <h4> <p> {{cid}}</p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Order ID   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 5%;">
+               <h4> <p>{{order_id}}</p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Total Payable Amount   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 5%;">
+               <h4> <p> {{total_amount}}</p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Your Saved Card No   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 5%;">
+               <h4> <p> {{card_no}}</p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Enter CVV   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 5%;">
+               <h4> <p > <input type="number" min='000' max='999' class="form-control" placeholder="CVV" required="required" id="cvv" name="cvv" style="width :20% ; margin-left:250px"></p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Enter OTP   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 5%;">
+               <h4> <p> <input type="number" class="form-control" placeholder="OTP" required="required" id="otp" name="otp" style="width :20% ;margin-left:250px"></p></h4>
+
+            </div>
+        </div>
+    <!-- <div id='or'>
 
         <div style="width: 48%; float:left ; margin-left:20px">
           
@@ -71,8 +159,8 @@
             <p>{{card_no}}</p>
             <p><input type="number" min='000' max='999' class="form-control" placeholder="CVV" required="required" id="cvv" name="cvv" style="width :20% ; margin-left:250px"></p>
             <p><input type="number" class="form-control" placeholder="OTP" required="required" id="otp" name="otp" style="width :20% ;margin-left:250px"></p>
-         </div>
-         <br><br><br><br><br><br>
+         </div> -->
+         <br><br><br>
          
         </div>
         <button type="submit" class="btn btn-primary btn-block" style="width:50% ; margin-left:25%;font-size: 20px;">Pay Securely</button>
