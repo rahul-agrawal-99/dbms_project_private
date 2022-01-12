@@ -39,6 +39,31 @@
     .abc{
         font-size: 28px;
     }
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 30%;
+        padding: 10px;
+        height: 1%;
+        /* Should be removed. Only for demonstration */
+      
+        margin-bottom: 1%;
+
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+
+        display: table;
+        clear: both;
+    }
+    p{
+        text-align: center;
+    }
 
    
 </style>
@@ -54,7 +79,70 @@
 
 {% endif %}<br>
     <form action="/newusersubmit"  method="post">
-    <div id='or'>
+
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Name   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="text" id="name" name="name" style="border: 2px black solid;" ></p></h4>
+
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Email   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="email" id="email" name="email" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Phone   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="tel" id="phone" name="phone"  maxlength="12" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Birth Date   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="date" id="birthday" name="birthday" value="Birth Date" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>userid   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="text" id="userid" name="userid" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>password:</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="text" id="pas" name="pas" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+
+    <!-- <div id='or'>
 
         <div style="width: 48%; float:left ; margin-left:20px">
           
@@ -85,11 +173,13 @@
          
          
         </div>
-        <br><br><br><br>
+        <br><br><br><br> -->
         <div>
         <button type="submit" class="btn btn-outline-dark" style=" font-size: 20px;margin-top:5px;width:60% ; margin-left:20%">Create New Account</button>
     </div> </form>
-
+<br>
+<br>
+<br>
 
 </body>
 </html>
