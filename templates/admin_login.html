@@ -10,51 +10,61 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-/* Create two equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
-
-h2{
-    font-size: 40px;
-    margin-left:100px;
-}
-
-
-
+    .row{
+  
+        align-content: center;
+        margin-top: 1%;
+      }
+      #row1{
+      
+        margin-left: 5%;
+        width: 90%;
+      }
+      #row2{
+      
+        margin-left: 5%;
+        margin-top: 10%;
+        width: 90%;
+      }
+      .bt{
+        float: left;
+        margin-left: 2%;
+        width: 31%;
+    
+        
+      }
 
 
 </style>
 </head>
 <body>
 
-    <div>
+    <div class='row'>
+        <div id='row1'>
+          
+          <div style="width: 100%;">
+            <div style="width: 75%; float: left; ">
+              <h4 style="font-size: 180%;float:left ;margin-top:2% ;margin-left:5%">Admin Dashboard</h4>
+            </div>
+          
+            <div style="width: 25%; float: left;">
+              
+          
+                <a href="\" class="btn btn-info" role="button" style="float: right; margin-top:5% ;margin-right:5%">Log Out</a>
+            </div>
+        
+          </div> 
+          
+        </div>
+        <div id='row2'>
+          <div class='bt'><a href="\project_login_table" class="btn btn-outline-info" role="button">Customers Details</a></div>
+    <div class='bt'><a href="\product_admin" class="btn btn-outline-success" role="button">Manage products</a></div>
+    <div class='bt'><a href="\transaction" class="btn btn-outline-secondary" role="button">Transactions</a></div>
+          
+        </div>
+        
+      </div>
 
-
-
-
-<br>
-<a href="/" class="btn btn-secondary btn-default" role="button" aria-pressed="true" style="font-size: smaller;float:right;margin-right:2%">back to Login</a>
-
-<p style="margin-top: 20%;">
-<div style="float: left;width:23%;margin-left:10%"><form action='\project_login_table' style="float: right; margin-right:100px">
-    <button type="submit" class="btn btn-outline-info" >Customers Details</button>
-</form></div>
-<div style="float: left;width:23%"><form action='\product_admin' style="float: right; margin-right:100px">
-    <button type="submit" class="btn btn-outline-success" >Manage products</button>
-</form></div>
-<div style="float: left;width:23%"><form action='\transaction' style="float: right; margin-right:100px">
-    <button type="submit" class="btn btn-outline-secondary" >Transactions</button>
-</form></div>
-
-</p>
 
 
 
