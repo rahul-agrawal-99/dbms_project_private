@@ -57,8 +57,8 @@
             width: 29%;
             margin-left: 4%;
             margin-top: 5%;
-            padding: 10px;
-            height: 300px; /* Should be removed. Only for demonstration */
+            align-items: center;
+           
           }
           .row:after {
 
@@ -91,6 +91,32 @@
             height: 50px;
             width: 30%;
         }
+        * {
+            box-sizing: border-box;
+        }
+    
+        /* Create two equal columns that floats next to each other */
+        .columnss {
+            float: left;
+            width: 40%;
+          
+            height: 1%;
+            /* Should be removed. Only for demonstration */
+            margin-left: 5%;
+            margin-bottom: 2%;
+           
+    
+        }
+    
+        /* Clear floats after the columns */
+        .row:after {
+    
+            display: table;
+            clear: both;
+        }
+        p{
+            text-align: center;
+        }
     </style>
 
     <body>
@@ -100,9 +126,48 @@
 
 
         <br><br>
+        <div class="row">
+            <div class="columnss" >
+                <h4> <p>Order ID   :</p></h4>
+            </div>
+            
+            <div class="columnss" style=" margin-left: 5%;">
+               <h4> <p> {{order_id}}</p></h4>
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="columnss" >
+                <h4> <p>Total Amount Paid   :</p></h4>
+            </div>
+            
+            <div class="columnss" style=" margin-left: 5%;">
+               <h4> <p>₹ {{total_pay}} /-</p></h4>
 
-        <div id='or'>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columnss" >
+                <h4> <p>Card No   :</p></h4>
+            </div>
+            
+            <div class="columnss" style=" margin-left: 5%;">
+                <h4 style="font-size: 140%;"> <p> {{card_no}}</p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="columnss" >
+                <h4> <p>Available Balance   :</p></h4>
+            </div>
+            
+            <div class="columnss" style=" margin-left: 5%;">
+               <h4> <p>₹ {{card_balance}} /-</p></h4>
+
+            </div>
+        </div>
+
+        <!-- <div id='or'>
 
             <div style="width: 30%; float:left ; margin-left:20px">
 
@@ -132,8 +197,8 @@
             </div>
             <br><br><br><br><br><br>
 
-        </div>
-        </form>
+        </div> -->
+       
         <div id='pur' style="margin-bottom: 2%;"><b>Purchased products</b> </div>
         <table class="table table-hover  ">
             <!-- <table class="table" style="margin-left: 10%;margin-right: 50%"> -->
@@ -162,19 +227,21 @@
         </table>
         <div class="row">
             <div class="column"  >
-                <form action='\' >
+                <a href="\" class="btn btn-outline-danger btn-lg" role="button" id='btn1'>Log Out</a>
+                <!-- <form action='\' >
                     <button type="submit" class="btn btn-outline-danger btn-lg" id="btn1"> &nbsp;&nbsp;&nbsp;Log
                         Out&nbsp;&nbsp;&nbsp;</button>
-                        </form>
+                        </form> -->
             </div>
             <div class="column" >
                 <button type="submit"  class="btn btn-outline-warning btn-lg"
-                onclick=download() id='btn2'> &nbsp;&nbsp;Print_Bill&nbsp;&nbsp;&nbsp;</button>
+                onclick=download() id='btn2'>&nbsp;Print_Bill&nbsp</button>
             </div>
             <div class="column" >
-                <form action='\product_page' >
+                <a href="\product_page" class="btn btn-outline-success btn-lg" role="button" id='btn3'>Continue Shopping</a>
+                <!-- <form action='\product_page' >
                     <button type="submit" class="btn btn-outline-success btn-lg" id='btn3'>Continue Shopping</button>
-                </form>
+                </form> -->
             </div>
           </div>
 
@@ -199,7 +266,9 @@
 
         </script>
 
-
+<br>
+<br>
+<br>
     </body>
 
 </html>
