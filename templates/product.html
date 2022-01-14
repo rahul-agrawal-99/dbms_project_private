@@ -64,7 +64,7 @@
             position: fixed;
             right: 0;
             bottom: 0;
-            margin-right: 2%;
+            margin-right: 5%;
             margin-bottom: 1%;
         }
 
@@ -120,7 +120,7 @@
         .addtocart {
             width: 25%;
             white-space: nowrap;
-            margin-left: 45%;
+            margin-left: 35%;
         }
 
         .columnplus {
@@ -139,24 +139,23 @@
 
 
         .columnmiddle {
+           
             float: left;
-            margin-left: 2%;
-            width: 7%;
-            padding: 10px;
+            margin-left: 5%;
+            width: 10%;
+            height: 40%;
+            margin-top: 1.5%;
+       
             align-items: center;
 
         }
 
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+        
 
         input {
             border: 2px black solid;
-            width: 50%;
-            height: 10%;
+            width: 55%;
+            text-align: center;
         }
     </style>
 
@@ -209,19 +208,21 @@
 
 
 
+           
                 <div class="row">
                     <div class="columnminus">
-                        <button type="button" class="btn btn-outline-secondary" id="btn2for{{i+1}}" onClick="onClickminus('{{i+1}}',this)" style="display: none;"> -
+                        <button type="button" class="btn btn-danger" id="btn2for{{i+1}}" onClick="onClickminus('{{i+1}}',this)" style="display: none;"> -
                         </button>
                     </div>
                     <div class="columnmiddle">
+                      
                         <input type="number" class='ama' name='{{i+1}}' id='{{i+1}}' min="0" max='{{jk[i][1]}}'
-                            value="0" style="display: none;">
+                            value="0" style="display: none;" readonly="readonly">
 
                     </div>
                     <div class="columnplus">
 
-                        <button type="button" class="btn btn-outline-secondary" id="btn3for{{i+1}}" onClick="onClickplus('{{i+1}}',this)" style="display: none;"> +
+                        <button type="button" class="btn btn-success" id="btn3for{{i+1}}" onClick="onClickplus('{{i+1}}',this)" style="display: none;"> +
                         </button>
                     </div>
                 </div>
@@ -276,7 +277,7 @@
                 document.getElementById("btn1for"+id).style.display = "none";  //  Add To Cart Button
                 document.getElementById("btn2for"+id).style.display = "inline"; //  Minus Button
                 document.getElementById("btn3for"+id).style.display = "inline"; //  Minus Button
-                document.getElementById(id).style.display = "inline"; // input tag
+               document.getElementById(id).style.display = "inline"; // input tag
                 document.getElementById(id).setAttribute('value', temp);
                 console.log("click on add to cart for PID =",id);
                 eval("clicksfor" + id+" =" +temp.toString());
@@ -293,20 +294,26 @@
                 if (temp > eval("maxfor" + id)) {
                     temp = eval("maxfor" +id) ;
                     console.log("max reached for PID = ", id);
+                    object.disabled = true;
                 }
+                document.getElementById("btn2for"+id).disabled = false;
                 document.getElementById(id).setAttribute('value', temp.toString());
                 console.log("click on plus for PID =",id , "is = ", temp);
                 eval("clicksfor" + id+" =" +temp.toString());
              };
 
             function onClickminus(id,object) {
+                if(document.getElementById("btn3for"+id).disabled){
+                    document.getElementById("btn3for"+id).disabled = false;
+                }
                 var temp = Number(eval("clicksfor" + id));
-                if (temp <= 0) {
-                    eval("clicksfor" + id) = "0";
+                temp -= 1;
+                console.log("current count for (-) pid =",id , "is = ", temp);
+                if (temp == 0) {
+                    temp = 0 ;
+                    document.getElementById("btn2for"+id).disabled = true;
                 }
-                else {
-                    temp -= 1;
-                }
+               
                 eval("clicksfor" + id+" =" +temp.toString());
                 document.getElementById(id).setAttribute('value', temp);
             };

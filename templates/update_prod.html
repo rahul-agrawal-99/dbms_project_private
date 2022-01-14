@@ -28,71 +28,133 @@
 
         }
 
-        #or {
-            text-align: center;
-            font-size: 25px;
-
-            height: 300px;
-            margin-left: 150px;
-            margin-right: 150px;
-
-        }
+      
 
         .abc {
             font-size: 28px;
         }
+        * {
+            box-sizing: border-box;
+        }
+    
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 40%;
+            padding: 10px;
+            height: 1%;
+            /* Should be removed. Only for demonstration */
+            margin-left: 5%;
+            margin-bottom: 1%;
+    
+        }
+    
+        /* Clear floats after the columns */
+        .row:after {
+    
+            display: table;
+            clear: both;
+        }
+        p{
+            text-align: center;
+        }
+        input{
+            border: 10px black solid;
+           margin-left: 50%;
+        }
+       
     </style>
 
     <body>
         <div id='pay'><b>Update Product</b> </div>
 
-    
+    <br>
+    <br>
 
         <form action="/success_update/{{pid}}"  method="post">
-            <div id='or'>
-        
-                <div style="width: 48%; float:left ; margin-left:20px">
-                  
-                    <div class='abc'>
-                    <p>Product ID:</p>  <hr>
-                    <p>Product name:</p>  <hr style="margin-top:30px">
-                    <p>Price Per Unit OLD :</p><hr>
-                    <p>Price Per Unit New :</p><hr>
-                    <p>Avilable Stock  :</p><hr>
-                    <p>Updated Stock :</p><hr>
-                    <p></p>
-                    <p></p>
-                    <p></p></div>
-                 </div>
-                 
-                 <div style="width: 50%; float:right ">
-               
-               <p>     <label for='pid' style="width :50% ; height:5% ; margin-top:4px">{{pid}}</label></p>  <hr>
-               <!-- <p> <input type="text" id="name" name="name" style="width :50% ; height:5% ; margin-top:4px" ></p>  <hr> -->
-             
-               <p>   <label for='pid' style="width :50% ; height:5%">{{pname}}</label></p><hr>
-               
-               <p> 
-                <label for='pid' style="width :50% ; height:5%">{{price}}</label></p><hr>
-               <!-- <p> <input type="date" id="birthday" name="birthday" value="Birth Date" style="width :50% ; height:5%"></p><hr>
-                
-               <!-- <p> <input type="text" id="userid" name="userid" style="width :50% ; height:5%" ></p><hr> -->
-               <p> <input type="number" id="uprice" name="uprice" style="width :50% ; height:5% ;" value="{{price}}"></p><hr > 
-               <p>  <label for='pid' style="width :50% ; height:5%">{{stock}}</label></p><hr style="margin-bottom:30px"> 
-               <p> <input type="number" id="ustock" name="ustock" style="width :50% ; height:5% ;" value="{{stock}}"></p><hr style="margin-bottom:30px"> 
-        
-               
-                    </div>
-                 
-                 
+
+          
+      
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Product ID   </p></h4>
                 </div>
-                <br><br><br><br>
-                <div>
+                
+                <div class="column" style=" margin-left: 5%;">
+                   <h4> <p> {{pid}}</p></h4>
+    
+                </div>
+            </div>
+         
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Product name   </p></h4>
+                </div>
+                
+                <div class="column" style=" margin-left: 5%;">
+                   <h4> <p> {{pname}}</p></h4>
+    
+                </div>
+            </div>
+         
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Price Per Unit OLD   </p></h4>
+                </div>
+                
+                <div class="column" style=" margin-left: 5%;">
+                   <h4> <p> {{price}}</p></h4>
+    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Price Per Unit New   </p></h4>
+                </div>
+                
+                <div class="column" style=" margin-left: 5%; width:15%">
+                    <h4> 
+                        <p > 
+                            <input type="number" id="uprice" name="uprice" value="{{price}}" class="form-control" placeholder="New Price" required="required" ></p></h4>
+    
+                </div>
+            </div>
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Avilable Stock   </p></h4>
+                </div>
+                
+                <div class="column" style=" margin-left: 5%;">
+                   <h4> <p> {{stock}}</p></h4>
+    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Updated Stock   </p></h4>
+                </div>
+                <div class="column" style=" margin-left: 5%; width:15%">
+                    <h4> 
+                        <p > 
+                            <input type="number" id="ustock" name="ustock" value="{{stock}}" class="form-control" placeholder="New stock" required="required" ></p></h4>
+    
+                </div>
+                
+               
+
+    
+    
+                 <!-- style="position: fixed; width: 100%; height: 20%; left:0;bottom:0;margin-left:25%;margin-top:10%" -->
                     <!-- <a href="success_update/{{pid}}" class="btn btn-secondary btn-default" role="button" aria-pressed="true" style="font-size: smaller;" >update stock and price</a> -->
-                <button type="submit" class="btn btn-outline-dark" style=" font-size: 20px;margin-top:5px;width:60% ; margin-left:20%">Update Product</button>
-            </div> </form>
+                <button type="submit" class="btn btn-outline-dark" style="width: 50%;margin-left:25%;margin-top:2%">Update Product</button>
+             </form>
 
-
+<br>
+<br>
+<br>
+<br>
     </body>
 
 </html>

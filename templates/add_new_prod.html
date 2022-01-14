@@ -41,6 +41,35 @@
         .abc {
             font-size: 28px;
         }
+        * {
+            box-sizing: border-box;
+        }
+    
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 40%;
+            padding: 10px;
+            height: 1%;
+            /* Should be removed. Only for demonstration */
+            margin-left: 5%;
+            margin-bottom: 1%;
+    
+        }
+    
+        /* Clear floats after the columns */
+        .row:after {
+    
+            display: table;
+            clear: both;
+        }
+        p{
+            text-align: center;
+        }
+        input{
+            border: 10px black solid;
+           margin-left: 50%;
+        }
     </style>
 
     <body>
@@ -49,56 +78,76 @@
 
 
         <form action="/product_admin" enctype="multipart/form-data" method="post" >
-            <div id='or'>
-
-                <div style="width: 48%; float:left ; margin-left:20px">
-
-                    <div class='abc'>
-                        <p>Product ID:</p>
-                        <hr>
-                        <p>Product name:</p>
-                        <hr>
-                        <p>Price Per Unit :</p>
-                        <hr>
-                        <p>Quanity :</p>
-                        <hr>
-                        <p>Select Product Image</p>
-                        <p></p>
-                        <p></p>
-                    </div>
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Product ID   </p></h4>
                 </div>
+                
+                <div class="column" style=" margin-left: 5%;">
+                   <h4> <p> {{pid}}</p></h4>
+    
+                </div>
+            </div>
+         
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Product Name    </p></h4>
+                </div>
+                
+                <div class="column" style="  width:35%">
+                    <h4> 
+                        <p > 
+                            <input type="text" id="pname" name="pname"  class="form-control" placeholder="Product Name" required="required" ></p></h4>
+    
+                </div>
+            </div>    
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Price Per Unit    </p></h4>
+                </div>
+                
+                <div class="column" style="  width:35%">
+                    <h4> 
+                        <p > 
+                            <input type="number"  id="price" name="price"  class="form-control" placeholder=" Price" required="required" ></p></h4>
+    
+                </div>
+            </div>    
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Quanity    </p></h4>
+                </div>
+                
+                <div class="column" style="  width:35%">
+                    <h4> 
+                        <p > 
+                            <input type="number" id="quantity" name="quantity" class="form-control" placeholder="quantity" required="required" ></p></h4>
+    
+                </div>
+            </div>  
+            <div class="row">
+                <div class="column" >
+                    <h4> <p>Select Product Image   </p></h4>
+                </div>
+                
+                <div class="column" style="float: left;">
+                   <h4> <p>  <input type="file" class="form-control" name="imagefile" id="imagefile" style="border: 0px black solid;"></p></h4>
+    
+                </div>
+            </div>  
+                        
+                     
+                  
 
-                <div style="width: 50%; float:right ">
-
-                    <p> <label for='pid' style="width :50% ; height:5% ; margin-top:4px">{{pid}}</label></p>
-                    <hr>
-
-
-                    <p> <input type="test" id="pname" name="pname" style="width :50% ; height:5%"></p>
-                    <hr>
-
-                    <p>
-                        <input type="number" id="price" name="price" style="width :50% ; height:5%">
-                    </p>
-                    <hr>
-
-
-                    <p> <input type="number" id="quantity" name="quantity" style="width :50% ; height:5% ;"></p>
-                    <hr style="margin-bottom:30px">
-
+               
               
-                        <input type="file" name="imagefile" id="imagefile" >
+                       
 
                     
                   
 
 
-                </div>
-
-
-            </div>
-            <br><br><br><br>
-            <div>
+              
                 <button type="submit" class="btn btn-outline-dark"
                     style=" font-size: 20px;margin-top:5px;width:60% ; margin-left:20%">Add New Product</button>
             </div>
