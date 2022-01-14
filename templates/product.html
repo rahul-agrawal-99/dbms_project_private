@@ -1,120 +1,338 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Product Page</title>
+<html lang='en'>
+
+    <head>
+        <meta charset='UTF-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Products</title>
+    </head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
     <style>
-    .container{
-        display: grid;
-        /* grid-template-columns: 300px 100px 100px; */
-        /* grid-template-columns: 300px auto 100px; */
-        /* grid-template-columns: 1fr 4fr 1fr; */
-        grid-template-columns: repeat(2, auto);
-        grid-gap: 2rem;
-    }
-    .item{
-        /* height: 100px;
-        width: 100px; */
-        background-color: rgb(218, 211, 211);
-        border: 2px solid black;
-        padding: 15px 5px;
-        margin-top: 2%;
-        margin-left: 10%;
-        margin-right: 10%;
-        
-        height: 400px;
-    }
-    img{
-        margin-left: 100px;
-        margin-right: 150px;
-        width: 300px;
-        height:300px;
-    }
-    .am{
-        margin-left: 35%;
-        font-size: larger;
-    }
-    .ama{
-        margin-left: 40%;
-    }
-    #login{
-        float: right;
-        margin-top: 5%;
-        width: 30%;
-        height: 55px;
-      
-    }
-    .footer {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        margin-right: 2%;
-        margin-bottom: 1%;
-        background-color: rgb(255, 0, 0);
-        border: 2px solid black;
-        text-align: center;
-        font-size: 40px;
-     }
+        .container {
 
-     #yu{
-         width: 50px;
-     }
+            margin-bottom: 5%;
+            margin-left: 5%;
+            margin-right: 5%;
+            padding: 1%;
+            display: grid;
 
+
+        }
+
+        img {
+            float: left;
+            margin-left: 32%;
+            border: 2px black solid;
+
+            width: 30%;
+
+
+        }
+        #yu{
+            position:absolute;
+            bottom: 10%;
+         
+            right:2%;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        input {
+            width: 10%;
+        }
+
+        .button {
+            border-radius: 4px;
+            background-color: #f4511e;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 200px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            margin-right: 2%;
+            margin-bottom: 1%;
+        }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            bottom: 20px;
+            margin-left: 2%;
+            width: 5%;
+
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: rgb(233, 224, 224);
+            color: rgb(20, 16, 16);
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+        }
+
+        #myBtn:hover {
+            background-color: #555;
+        }
+
+        .addtocart {
+            width: 25%;
+            white-space: nowrap;
+            margin-left: 45%;
+        }
+
+        .columnplus {
+            float: left;
+            padding: 10px;
+
+        }
+
+        .columnminus {
+            float: left;
+
+            padding: 10px;
+            margin-left: 35%;
+
+        }
+
+
+        .columnmiddle {
+            float: left;
+            margin-left: 2%;
+            width: 7%;
+            padding: 10px;
+            align-items: center;
+
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        input {
+            border: 2px black solid;
+            width: 50%;
+            height: 10%;
+        }
     </style>
 
-  
-   
-  
+    <body>
+
+        <div
+            style="border: 2px black solid; position:fixed;height:7%;background-color:rgb(111, 238, 6);border-radius: 15px;width:100%">
+            <b style="font-size: 40px;">
+                <marquee behavior='' direction='left' style="float: left;width:90%;padding-bottom:1%">Online Shop Management </marquee>
+            </b>
 
 
-</head>
-<body>
-   
+          
+                <!-- <button type="submit" id='yu'>Log Out</button> -->
+         
+                <a href="\" id="yu" class="btn btn-danger" role="button" style="float: right; margin-top:5% ;margin-right:5%">Log Out</a>
+           
+        </div>
+        <br>
+        <br>
+        <br>
 
-    <div style="border: 2px black solid; position:fixed; width:98%;height:45px;background-color:rgb(111, 238, 6);border-radius: 15px;">  
-        <b style="font-size: 40px;">   <marquee behavior='' direction='left' style="float: left;width:90%">Online Shop Management </marquee>  </b>  
-      <form action='\' style="float: right; margin-right:80px">
-            <button type="submit" id='yu' >Log Out</button>
+
+        <script>
+            var total = "{{total}}";
+            total = Number(total);
+            for (var i = 1; i < total + 1; i++) {
+                eval('var ' + "clicksfor" + i + '= ' + 0 + ';');
+                
+            }
+
+        </script>
+
+
+        <form action='/cart' method='post'>
+
+            {% for i in range(jk|length) %}
+
+            {% if jk[i][1] == 0 %}
+
+            {% else %}
+            <div class='container'>
+                <img src='/static/assets/images/{{i+1}}.jpg' alt=''>
+
+                <p>{{jk[i][0]}}</p>
+               
+
+                <button type="button" class="addtocart btn btn-warning" id="btn1for{{i+1}}" onclick="onClickaddtocart('{{i+1}}',this)"> Add To Cart
+                </button>
+
+
+
+                <div class="row">
+                    <div class="columnminus">
+                        <button type="button" class="btn btn-outline-secondary" id="btn2for{{i+1}}" onClick="onClickminus('{{i+1}}',this)" style="display: none;"> -
+                        </button>
+                    </div>
+                    <div class="columnmiddle">
+                        <input type="number" class='ama' name='{{i+1}}' id='{{i+1}}' min="0" max='{{jk[i][1]}}'
+                            value="0" style="display: none;">
+
+                    </div>
+                    <div class="columnplus">
+
+                        <button type="button" class="btn btn-outline-secondary" id="btn3for{{i+1}}" onClick="onClickplus('{{i+1}}',this)" style="display: none;"> +
+                        </button>
+                    </div>
+                </div>
+
+
+
+                <script>
+                    eval('var ' + "maxfor" + "{{i+1}}" + '= ' + document.getElementById("{{i+1}}").max + ';');
+
+                    console.log("maxfor{{i+1}} = ", eval("maxfor" + "{{i+1}}"));
+
+                    
+
+                </script>
+
+
+                <p><strong>Price : ₹ {{jk[i][2]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
+                    {% if jk[i][1] < 5 %} <strong> Available Quantity : {{jk[i][1]}}</strong>
+                    <span class="badge badge-danger">Only Few left</span>
+                        {% else %}
+                        <strong>Available Quantity : {{jk[i][1]}}</strong>
+                        {% endif %}
+
+                </p>
+            </div>
+            <hr>
+
+            {% endif %}
+
+
+
+
+            {% endfor %}
+            <br>
+            <br>
+            <br>
+            <br>
+            <button type="submit" id="login" class="button"><span>Checkout </span></button>
+
+
         </form>
-        </div>
-    
-<br><br>
-
-    <form action='/cart' method='post'>
-    <div class="container">
-
-        {% for i in range(jk|length) %}
-            
-        
-        <div class="item">     <b>
-            
-            <img src='/static/assets/images/{{i+1}}.jpg' alt=''>
-            <label for='product' class='am'>{{jk[i][0]}}</label>
-            <p>
-            <input type="number" class='ama' name='{{i+1}}' id='{{i+1}}' min="0" max='{{jk[i][1]}}' value="0" style="width: 60px;height:20px"></p>
-            <p> <label for='price' style="text-align: center;margin-left:30%"> Price : {{jk[i][2]}} &nbsp;&nbsp;   &nbsp; Available Quantity : {{jk[i][1]}}</label></p>
-     </b>
-        </div>
-        {% endfor %}
-
-        <p></p>
-        <p></p>
-        <p></p>
-   
-   
-    
-    </div>
-   
-        <button type="submit" id="login" class="footer"  class="btn btn-outline-success btn-lg" >
-            
-            Checkout cart</button>
-        
-       
+        <button onclick="topFunction()" id="myBtn" title="Go to top">
+            <h2>↑</h2>
+        </button>
 
 
-   
-</form>
-</body>
+        <script>
+            function onClickaddtocart(id,object) {
+                console.log("clicked on product id = ", id);
+                var temp = Number(eval("clicksfor" + id));
+                temp ++;
+                document.getElementById("btn1for"+id).style.display = "none";  //  Add To Cart Button
+                document.getElementById("btn2for"+id).style.display = "inline"; //  Minus Button
+                document.getElementById("btn3for"+id).style.display = "inline"; //  Minus Button
+                document.getElementById(id).style.display = "inline"; // input tag
+                document.getElementById(id).setAttribute('value', temp);
+                console.log("click on add to cart for PID =",id);
+                eval("clicksfor" + id+" =" +temp.toString());
+
+            }
+
+
+            function onClickplus(id,object) {
+                var temp = Number(eval("clicksfor" + id));
+                console.log("current count for pid =",id , "is = ", temp);
+                temp = temp + 1;
+                console.log("current* count for pid =",id , "is = ", temp);
+                console.log("max for pid =",id , "is = ", eval("maxfor" + id));
+                if (temp > eval("maxfor" + id)) {
+                    temp = eval("maxfor" +id) ;
+                    console.log("max reached for PID = ", id);
+                }
+                document.getElementById(id).setAttribute('value', temp.toString());
+                console.log("click on plus for PID =",id , "is = ", temp);
+                eval("clicksfor" + id+" =" +temp.toString());
+             };
+
+            function onClickminus(id,object) {
+                var temp = Number(eval("clicksfor" + id));
+                if (temp <= 0) {
+                    eval("clicksfor" + id) = "0";
+                }
+                else {
+                    temp -= 1;
+                }
+                eval("clicksfor" + id+" =" +temp.toString());
+                document.getElementById(id).setAttribute('value', temp);
+            };
+      
+            //Get the button
+            var mybutton = document.getElementById("myBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                }
+                else {
+                    mybutton.style.display = "none";
+                }
+            }
+
+
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+
+        </script>
+    </body>
+
 </html>

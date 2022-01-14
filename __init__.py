@@ -29,3 +29,8 @@
 
 # rows = cursor.execute("select * from product_details").fetchall()
 # print(rows)
+
+
+a= [('fogg deo', 78, 45, 1), ('himalaya pimple clear', 0, 75, 2), ('parachute coconut oil', 60, 80, 3), ('pears soap', 70, 20, 4), ('pepsodent paste', 12, 65, 5), ('ponds powder', 8, 55, 6), ('toothbrush ', 89, 15, 7), ('corn flakes', 7, 145, 8), ('indo noodles 500g pack', 3, 225, 9), ('coca-cola 500ml', 22, 65, 10)]  
+
+print(len(a))

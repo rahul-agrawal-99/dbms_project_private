@@ -37,7 +37,7 @@ def newuser():
 def product_page():
     s=db.get_product_name()
     print(s)
-    return render_template('product.html' , jk=s )
+    return render_template('product.html' , jk=s , total = len(s) )
     
 @app.route("/card",methods=['POST','GET'])    
 def card():
@@ -132,7 +132,11 @@ def cart():
     p.clear()
     if request.method == 'POST':
         for i in range(len(db.get_product_name())):
-            prod.append(int(request.form[f"{i+1}"]) )   
+            try:
+                prod.append(int(request.form[f"{i+1}"]) )   
+            except Exception as e:
+                print(f"error at {i+1} occured as : {e}")
+                prod.append(0)
     s=db.get_product_name()    
     c=prod.count(0)
     if c==len(prod):
