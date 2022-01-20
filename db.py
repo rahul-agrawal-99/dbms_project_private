@@ -103,7 +103,7 @@ def make_payment(crd_no ,payable_amout):
         q=f"update card_details set card_balance = {upadted_card_bal} where card_no='{crd_no}'"
         execute_query(connect("localhost",u,p,db),q)
         commit(connect("localhost",u,p,db))
-        print(" upadted_card_bal = ",card_bal,"-",payable_amout , "= ",upadted_card_bal)
+        # print(" upadted_card_bal = ",card_bal,"-",payable_amout , "= ",upadted_card_bal)
         return upadted_card_bal
         
 def transaction(oid,cid,amount):
@@ -116,7 +116,7 @@ def transaction(oid,cid,amount):
     
 def update_prod(pid,price ,stock):
     q=f" update product_details set stock={stock} ,price ={price} where pid={pid}"
-    print(q)
+    # print(q)
     execute_query(connect("localhost",u,p,db),q)
     commit(connect("localhost",u,p,db))   
 
@@ -158,7 +158,7 @@ def get_accound(id):
     db="mini"
     c=connect("localhost",f'{u}','rahul',db)
     q=f"select id,name,email,phone,bday,age from project_login where id='{id}'"
-    print(q)
+    # print(q)
     r=print_val(c,q)
     
     return r[0]
@@ -195,12 +195,12 @@ def insert_new_user(name,email,phone,bday,userid,pas):  #data stored in  Flask_d
     if(pas==""):
         return 'blankp'
     if(len(status)!=0):
-        print('userID already exist ')
+        # print('userID already exist ')
         return 'exist'
     age=get_age(bday)
     # if(age<15):
     #     return 'noage'
-    print('age is',age)
+    # print('age is',age)
     q=f"insert into project_login values ('{userid}','{pas}','{name}','{email}','{phone}','{bday}',{age})"
    
     execute_query(connect("localhost",u,p,db),q)
@@ -208,14 +208,14 @@ def insert_new_user(name,email,phone,bday,userid,pas):  #data stored in  Flask_d
     
 def insert_new_card(cid,cno,cvv,bal): 
     q=f"insert into card_details values ('{cid}','{cno}','{cvv}','{bal}')"
-    print(q)
+    # print(q)
     execute_query(connect("localhost",u,p,db),q)
     commit(connect("localhost",u,p,db))
     
     
 def insert_new_product(pid , pname , price , stock): 
     q=f"insert into  product_details values ('{pid}','{ pname}','{stock}','{price}')"
-    print(q)
+    # print(q)
     execute_query(connect("localhost",u,p,db),q)
     commit(connect("localhost",u,p,db))
     
@@ -228,18 +228,18 @@ def get_product_id():
     return r
 
 def update_orders(pr,oid):
-    print("recieved p:",p,"\n oid :",oid)
+    # print("recieved p:",p,"\n oid :",oid)
     s=get_product_id()
-    print('Got Product id as :',s)
+    # print('Got Product id as :',s)
     for c,i in enumerate(pr):
         if i!=0:
             q=f"update product_details set stock = stock-{i} where pid={c+1}"
-            print("Executing Query As :",q)
+            # print("Executing Query As :",q)
             execute_query(connect("localhost",u,p,db),q)
             commit(connect("localhost",u,p,db))
             
             q=f"insert into complate_orders values ({oid},{c+1})"
-            print("Executing Query As :",q)
+            # print("Executing Query As :",q)
             execute_query(connect("localhost",u,p,db),q)
             commit(connect("localhost",u,p,db))
             

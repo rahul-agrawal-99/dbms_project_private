@@ -8,41 +8,56 @@
         <title>Products</title>
     </head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
+        body {
+            width: 90vw;
+        }
+
         .container {
 
             margin-bottom: 5%;
             margin-left: 5%;
-            margin-right: 5%;
+
             padding: 1%;
-            display: grid;
+            width: 20%;
+            display: inline-block;
+            /* display: grid; */
+
+            position: relative;
 
 
         }
+     
+       
 
         img {
-            float: left;
-            margin-left: 32%;
-            border: 2px black solid;
 
-            width: 30%;
+            margin: auto;
+
+            display: block;
+            width: 15rem;
 
 
         }
-        #yu{
-            position:absolute;
+      
+
+        #yu {
+            position: absolute;
             bottom: 10%;
-         
-            right:2%;
+
+            right: 2%;
         }
 
         p {
             text-align: center;
+
+
         }
 
         input {
@@ -57,7 +72,7 @@
             text-align: center;
             font-size: 28px;
             padding: 20px;
-            width: 200px;
+            width: 12vw;
             transition: all 0.5s;
             cursor: pointer;
             margin: 5px;
@@ -65,7 +80,12 @@
             right: 0;
             bottom: 0;
             margin-right: 5%;
-            margin-bottom: 1%;
+            margin-bottom: 3%;
+
+        }
+
+        .checked {
+            color: orange;
         }
 
         .button span {
@@ -93,6 +113,32 @@
             right: 0;
         }
 
+        /* The animation code */
+        @keyframes example {
+            0% {
+                background-color: red;
+            }
+
+            50% {
+                background-color: rgb(78, 4, 250);
+            }
+
+
+
+            100% {
+                background-color: red;
+            }
+        }
+
+        .chcolor {
+
+            background-color: rgb(38, 0, 255);
+            animation-name: example;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+
+
         #myBtn {
             display: none;
             position: fixed;
@@ -117,66 +163,277 @@
             background-color: #555;
         }
 
+        .rating {
+
+            align-items: center;
+            margin-bottom: 3%;
+        }
+
         .addtocart {
-            width: 25%;
+            width: 8vw;
             white-space: nowrap;
             margin-left: 35%;
         }
 
+        .row {
+
+            padding-left: 35%;
+        }
+
         .columnplus {
-            float: left;
+            display: inline-block;
             padding: 10px;
 
         }
 
         .columnminus {
-            float: left;
-
+            display: inline-block;
             padding: 10px;
-            margin-left: 35%;
+            margin-right: 10%;
+
 
         }
 
 
         .columnmiddle {
-           
-            float: left;
-            margin-left: 5%;
-            width: 10%;
-            height: 40%;
-            margin-top: 1.5%;
-       
+
+            display: inline;
+            width: 30%;
+
+            margin-left: auto;
+            margin: auto 0px;
+
+
             align-items: center;
 
         }
 
-        
+
 
         input {
-            border: 2px black solid;
+
             width: 55%;
             text-align: center;
+            font-weight: 1000;
+            box-shadow: none;
+            border: none;
         }
+
+        input:focus {
+
+            outline: none;
+        }
+
+          /* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  .header {
+    overflow: hidden;
+   
+    padding: 20px 10px;
+  
+  }
+  
+  .header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px; 
+    line-height: 25px;
+    border-radius: 4px;
+   
+  }
+  
+  .header a.logo {
+   
+    font-weight: bold;
+    font-size: 4rem;
+    text-align: justify;
+  }
+  
+  .header a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .header a.active {
+    background-color: dodgerblue;
+    color: white;
+  }
+  
+  .header-right {
+    float: right;
+  }
+  
+        /* for mobiles */
+        @media screen and (max-width: 550px) {
+            .container {
+                width: 95%;
+                margin-left: 5%;
+
+                border-bottom: 1px solid black;
+            }
+            .container:hover {
+                transform: scale(1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+              
+              }
+
+            .button {
+
+                width: 40vw;
+                height: 10vh;
+
+                margin-right: 10%;
+                margin-bottom: 3%;
+
+            }
+
+            .addtocart {
+                width: 30vw;
+
+            }
+
+            .row {
+
+                padding-left: 20%;
+            }
+
+            .columnmiddle {
+
+
+                width: 40%;
+
+
+                margin: auto 0px;
+
+
+                align-items: center;
+
+            }
+          
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+              }
+              
+              .header-right {
+                float: right;
+                width: 30%;
+              }
+              .header a.logo {
+   
+                font-weight: bold;
+                font-size: 3rem;
+                text-align: justify;
+              }
+        }
+
+        /* for tablets */
+        @media (min-width: 551px) and (max-width: 850px) {
+            .container {
+                width: 32%;
+            }
+
+            .button {
+
+                width: 40vw;
+                height: 10vh;
+
+                margin-right: 10%;
+                margin-bottom: 3%;
+
+            }
+        }
+
+        /* for desktop */
+        @media screen and (min-width: 851px) {
+            .container {
+                width: 23%;
+
+            }
+        }
+
+        h3 {
+            margin-top: 3vh;
+        }
+      
+
+          
+  
+
     </style>
 
     <body>
+        
 
-        <div
-            style="border: 2px black solid; position:fixed;height:7%;background-color:rgb(111, 238, 6);border-radius: 15px;width:100%">
-            <b style="font-size: 40px;">
-                <marquee behavior='' direction='left' style="float: left;width:90%;padding-bottom:1%">Online Shop Management </marquee>
-            </b>
-
-
-          
-                <!-- <button type="submit" id='yu'>Log Out</button> -->
+        <div class="header">
+        
+            <a href="#default" class="logo">  Mini Shop
+             </a>
          
-                <a href="\" id="yu" class="btn btn-danger" role="button" style="float: right; margin-top:5% ;margin-right:5%">Log Out</a>
-           
-        </div>
+            <div class="header-right">
+                <a class="active btn btn-danger" href="\" id="logout">Log Out</a>
+                
+            </div>
+          </div>
+                    
+       
+          
+
+       
+
+
+
+            <!-- <button type="submit" id='yu'>Log Out</button> -->
+
+    
         <br>
-        <br>
-        <br>
+     
 
 
         <script>
@@ -184,7 +441,7 @@
             total = Number(total);
             for (var i = 1; i < total + 1; i++) {
                 eval('var ' + "clicksfor" + i + '= ' + 0 + ';');
-                
+
             }
 
         </script>
@@ -198,62 +455,86 @@
 
             {% else %}
             <div class='container'>
+                <div class='zoom'>
+
+       
                 <img src='/static/assets/images/{{i+1}}.jpg' alt=''>
+                <!-- Name  -->
+                <h3>
+                    <p>{{jk[i][0]}}</p>
+                </h3>
 
-                <p>{{jk[i][0]}}</p>
-               
-
-                <button type="button" class="addtocart btn btn-warning" id="btn1for{{i+1}}" onclick="onClickaddtocart('{{i+1}}',this)"> Add To Cart
-                </button>
-
-
-
-           
-                <div class="row">
-                    <div class="columnminus">
-                        <button type="button" class="btn btn-danger" id="btn2for{{i+1}}" onClick="onClickminus('{{i+1}}',this)" style="display: none;"> -
-                        </button>
-                    </div>
-                    <div class="columnmiddle">
-                      
-                        <input type="number" class='ama' name='{{i+1}}' id='{{i+1}}' min="0" max='{{jk[i][1]}}'
-                            value="0" style="display: none;" readonly="readonly">
-
-                    </div>
-                    <div class="columnplus">
-
-                        <button type="button" class="btn btn-success" id="btn3for{{i+1}}" onClick="onClickplus('{{i+1}}',this)" style="display: none;"> +
-                        </button>
-                    </div>
-                </div>
+                <p><strong> ₹ {{jk[i][2]}}.00/-</strong>
+                    {% if jk[i][1] < 10 %} <span class="badge badge-danger chcolor">Only Few left</span>
 
 
-
-                <script>
-                    eval('var ' + "maxfor" + "{{i+1}}" + '= ' + document.getElementById("{{i+1}}").max + ';');
-
-                    console.log("maxfor{{i+1}} = ", eval("maxfor" + "{{i+1}}"));
-
-                    
-
-                </script>
-
-
-                <p><strong>Price : ₹ {{jk[i][2]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
-                    {% if jk[i][1] < 5 %} <strong> Available Quantity : {{jk[i][1]}}</strong>
-                    <span class="badge badge-danger">Only Few left</span>
-                        {% else %}
-                        <strong>Available Quantity : {{jk[i][1]}}</strong>
                         {% endif %}
+                        <p style="text-align: justify;"> Something about product {{jk[i][0]}} that describes correctly about Products </p>
+
+
+                        <div class='rating'>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                             <span style="margin-left: 5%;"> <u> 23+ verfied purchase </u></span>
+                            
+        
+                        </div>
+
+                    </div>
+
+                        <button type="button" class=" btn btn-warning addtocart" id="btn1for{{i+1}}"
+                            onclick="onClickaddtocart('{{i+1}}',this)"> Add To Cart
+                        </button>
+
+
+                        <div id="snackbar">Added item successfully .. </div>
+
+                        <div class="row">
+                            <div class="columnminus">
+                                <button type="button" class="btn btn-danger" id="btn2for{{i+1}}"
+                                    onClick="onClickminus('{{i+1}}',this)" style="display: none;"> -
+                                </button>
+                            </div>
+                            <div class="columnmiddle">
+
+                                <input type="number" class='ama' name='{{i+1}}' id='{{i+1}}' min="0" max='{{jk[i][1]}}'
+                                    value="0" style="display: none;" readonly="readonly">
+
+                            </div>
+                            <div class="columnplus">
+
+                                <button type="button" class="btn btn-success" id="btn3for{{i+1}}"
+                                    onClick="onClickplus('{{i+1}}',this)" style="display: none;"> +
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                        <script>
+                            eval('var ' + "maxfor" + "{{i+1}}" + '= ' + document.getElementById("{{i+1}}").max + ';');
+
+                            console.log("maxfor{{i+1}} = ", eval("maxfor" + "{{i+1}}"));
+
+
+
+                        </script>
+
+
+
 
                 </p>
+              
             </div>
-            <hr>
+
 
             {% endif %}
 
 
-
+            <hr style="display: inline;">
 
             {% endfor %}
             <br>
@@ -270,54 +551,69 @@
 
 
         <script>
-            function onClickaddtocart(id,object) {
+            function scrollFunction() {
+                if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                  document.getElementById("header").style.fontSize = "30px";
+                } else {
+                  document.getElementById("header").style.fontSize = "90px";
+                }
+              }
+            function onClickaddtocart(id, object) {
                 console.log("clicked on product id = ", id);
                 var temp = Number(eval("clicksfor" + id));
-                temp ++;
-                document.getElementById("btn1for"+id).style.display = "none";  //  Add To Cart Button
-                document.getElementById("btn2for"+id).style.display = "inline"; //  Minus Button
-                document.getElementById("btn3for"+id).style.display = "inline"; //  Minus Button
-               document.getElementById(id).style.display = "inline"; // input tag
+                temp++;
+                document.getElementById("btn1for" + id).style.display = "none";  //  Add To Cart Button
+                document.getElementById("btn2for" + id).style.display = "inline"; //  Minus Button
+                document.getElementById("btn3for" + id).style.display = "inline"; //  Minus Button
+                document.getElementById(id).style.display = "inline"; // input tag
                 document.getElementById(id).setAttribute('value', temp);
-                console.log("click on add to cart for PID =",id);
-                eval("clicksfor" + id+" =" +temp.toString());
+                console.log("click on add to cart for PID =", id);
+                eval("clicksfor" + id + " =" + temp.toString());
+               
+                var x = document.getElementById("snackbar");
+
+                // Add the "show" class to DIV
+                x.className = "show";
+              
+                // After 3 seconds, remove the show class from DIV
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 
             }
 
 
-            function onClickplus(id,object) {
+            function onClickplus(id, object) {
                 var temp = Number(eval("clicksfor" + id));
-                console.log("current count for pid =",id , "is = ", temp);
+                console.log("current count for pid =", id, "is = ", temp);
                 temp = temp + 1;
-                console.log("current* count for pid =",id , "is = ", temp);
-                console.log("max for pid =",id , "is = ", eval("maxfor" + id));
+                console.log("current* count for pid =", id, "is = ", temp);
+                console.log("max for pid =", id, "is = ", eval("maxfor" + id));
                 if (temp > eval("maxfor" + id)) {
-                    temp = eval("maxfor" +id) ;
+                    temp = eval("maxfor" + id);
                     console.log("max reached for PID = ", id);
                     object.disabled = true;
                 }
-                document.getElementById("btn2for"+id).disabled = false;
+                document.getElementById("btn2for" + id).disabled = false;
                 document.getElementById(id).setAttribute('value', temp.toString());
-                console.log("click on plus for PID =",id , "is = ", temp);
-                eval("clicksfor" + id+" =" +temp.toString());
-             };
+                console.log("click on plus for PID =", id, "is = ", temp);
+                eval("clicksfor" + id + " =" + temp.toString());
+            };
 
-            function onClickminus(id,object) {
-                if(document.getElementById("btn3for"+id).disabled){
-                    document.getElementById("btn3for"+id).disabled = false;
+            function onClickminus(id, object) {
+                if (document.getElementById("btn3for" + id).disabled) {
+                    document.getElementById("btn3for" + id).disabled = false;
                 }
                 var temp = Number(eval("clicksfor" + id));
                 temp -= 1;
-                console.log("current count for (-) pid =",id , "is = ", temp);
+                console.log("current count for (-) pid =", id, "is = ", temp);
                 if (temp == 0) {
-                    temp = 0 ;
-                    document.getElementById("btn2for"+id).disabled = true;
+                    temp = 0;
+                    document.getElementById("btn2for" + id).disabled = true;
                 }
-               
-                eval("clicksfor" + id+" =" +temp.toString());
+
+                eval("clicksfor" + id + " =" + temp.toString());
                 document.getElementById(id).setAttribute('value', temp);
             };
-      
+
             //Get the button
             var mybutton = document.getElementById("myBtn");
 
