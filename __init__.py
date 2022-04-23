@@ -1,7 +1,9 @@
-# import sqlite3
+import sqlite3
 
-# connection = sqlite3.connect("project.db")
-# cursor = connection.cursor()
+connection = sqlite3.connect("project.db")
+cursor = connection.cursor()
+cursor.execute("delete FROM purchase_details where order_id = '42764198'")
+# cursor.execute("CREATE TABLE purchase_details( order_id TEXT PRIMARY KEY,cid TEXT(500),products  TEXT,total_cart_calue INTEGER ,date date  )")
 # # cursor.execute("CREATE TABLE project_login( id TEXT PRIMARY KEY,password  TEXT,name TEXT ,email TEXT,phone TEXT ,bday date ,age  INTEGER )")
 
 # # cursor.execute("CREATE TABLE product_details(pid INTEGER PRIMARY KEY,pname TEXT ,stock INTEGER, price INTEGER , CHECK (stock>=0) )")

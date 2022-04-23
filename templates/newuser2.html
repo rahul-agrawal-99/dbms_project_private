@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>New User Registration</title>
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+
+            :root {
+                --line-border-fill: #3498db;
+                --line-border-empty: #e0e0e0;
+                --color-light: white;
+                --color-dark: #212121;
+                --color-signal: #fab700;
+
+                --color-background: var(--color-light);
+                --color-text: var(--color-dark);
+                --color-accent: var(--color-signal);
+
+                --size-bezel: .5rem;
+                --size-radius: 4px;
+
+                line-height: 1.4;
+
+                font-family: 'Inter', sans-serif;
+                font-size: calc(.6rem + .4vw);
+                color: var(--color-text);
+                background: var(--color-background);
+                font-weight: 300;
+                padding: 0 calc(var(--size-bezel) * 3);
+            }
+
+
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+
+                background-color: #f6f7fb;
+                font-family: 'Muli', sans-serif;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                overflow: hidden;
+                margin: 0;
+                text-align: center;
+
+            }
+
+
+
+            .progressCont {
+
+                display: flex;
+                justify-content: space-between;
+                position: fixed;
+                top: 0;
+                left: 0;
+                margin-top: 5%;
+                margin-left: 25%;
+                max-width: 100%;
+                width: 50vw;
+
+            }
+
+            @media screen and (max-width: 400px) {
+                .progressCont {
+                    margin-left: 0%;
+                    width: 100vw;
+                }
+
+            }
+
+            .progressCont::before {
+
+                content: ' ';
+                background-color: var(--line-border-empty);
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                height: 4px;
+                width: 100%;
+                z-index: -1;
+
+            }
+
+            .outercont {
+                position: fixed;
+                top: 0;
+            }
+
+            .progress {
+
+                background-color: var(--line-border-fill);
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                height: 4px;
+                width: 0%;
+                z-index: -1;
+                transition: 0.4s ease;
+
+
+            }
+
+            .circle {
+
+                background-color: white;
+                color: #999;
+                border-radius: 10%;
+                height: 20%;
+                width: 20%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 3px solid var(--line-border-empty);
+                transition: 0.4s ease;
+
+            }
+
+            .circle.active {
+
+                border-color: var(--line-border-fill);
+
+            }
+
+            .btn {
+
+                background-color: var(--line-border-fill);
+                color: white;
+                border: 0;
+                border-radius: 6px;
+                cursor: pointer;
+                font-family: inherit;
+                padding: 8px 30px;
+                margin: 5px;
+                font-size: 14px;
+
+            }
+
+            .btn:active {
+                transform: scale(.98);
+            }
+
+            .btn:focus {
+
+                outline: 0;
+
+            }
+
+            .btn:disabled {
+
+                background-color: var(--line-border-empty);
+                cursor: not-allowed;
+
+            }
+
+            .buttons {
+                position: fixed;
+                bottom: 0;
+                margin-bottom: 5rem;
+            }
+
+            #userid {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid red;
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        {% if status != "" %}
+        <p style="text-align: center;color:rgb(240, 0, 0);size:10px">
+            {{status}}
+        </p>
+        <br>
+        <br>
+        <div class="outerCont">
+
+            {% endif %}<br>
+
+            <div class="progressCont">
+
+                <div class="progress" id="progress"></div>
+                <div class="circle active">Name</div>
+                <div class="circle">Contact</div>
+                <div class="circle">BDate</div>
+                <div class="circle">Username</div>
+                <div class="circle">Password</div>
+
+
+            </div>
+
+        </div>
+
+        <form action="/newusersubmit" method="post">
+
+
+
+            <div class='inputs'>
+                <!--          Name -->
+
+                <div class="w3-row w3-section" id="box1">
+                    <div class='icon' style="margin-bottom:5%">
+
+                        <i class="w3-xxlarge fa fa-user"></i>
+                    </div>
+                    <div class="w3-col" style="width:50px">
+
+                    </div>
+
+                    <div class="w3-rest">
+                        <p style="text-align: left;">First Name</p>
+                        <input class="w3-input w3-border" id="fname" name="fname" type="text" placeholder="First Name"
+                            min="1">
+                        <br>
+                        <br>
+                        <p style="text-align: left;">Last Name</p>
+                        <input class="w3-input w3-border" id="lname" name="lname" type="text" placeholder="Last Name"
+                            min="1">
+                    </div>
+                </div>
+
+                <!--          Name -->
+                <div class="w3-row w3-section" id="box2" style="display: none;">
+                    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
+                    <div class="w3-rest">
+                        <p style="text-align: left;">Email</p>
+                        <input class="w3-input w3-border" name="email" type="text" placeholder="Email" id="email">
+                    </div>
+                    <div class="w3-row w3-section">
+                        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>
+                        <div class="w3-rest">
+                            <p style="text-align: left;">Contact No.</p>
+                            <input class="w3-input w3-border" name="phone" type="text" placeholder="Phone" id="phone">
+                        </div>
+                    </div>
+                </div>
+
+                <!--          Name -->
+                <div id='box3' style="display: none;">
+                    <p style="text-align: left;">Birth Date</p>
+                    <input class="w3-input w3-border" type='date' name="birthday" id='birthday'
+                        style="width: 120%; display:inline-block">
+                </div>
+                <!--          Name -->
+                <div id='box4' style="display: none;">
+                    <p style="text-align: left;">Username</p>
+                    <sub style="display: block;color:red;" id="usermsg"></sub>
+                    <div class="w3-row w3-section">
+                        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+                        <div class="w3-rest" id="userdiv">
+                            <input class="w3-input w3-border" name="userid" type="text" placeholder="Username"
+                                id="userid" onmouseleave="cheack_user()">
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!--          Name -->
+                <div id='box5' style="display: none;">
+                    <p style="text-align: left;">Password</p>
+                    <input class="w3-input w3-border" type='text' name='pas' placeholder='Password' id="pass"
+                        onchange="doThing()">
+                    <p style="text-align: left;">Confirm Password</p>
+
+
+                    <input class="w3-input w3-border" type='password' name='cpassword' placeholder='Confirm'
+                        id="passagain" onchange="doThing()">
+                    <br>
+                    <sub style="display: block;color:red;" id="lowpass"></sub>
+                    <br>
+                    <input type="checkbox" id="ch" name="ch" value="show" onclick="myFunction()"><label for='check'>Show
+                        Password</label>
+                    <br>
+
+
+                    </button>
+                </div>
+                <script>
+                    const submit = document.getElementById("submit")
+
+                    submit.disabled = true
+                    //   window.onload = function () {
+                    //
+                    //      /* event listener */
+                    //     document.getElementsByName("pass")[0].addEventListener('change', doThing);
+                    //      document.getElementsByName("passagain")[0].addEventListener('change', doThing);
+                    //    const submit = document.getElementById("submit")
+                    //  }
+
+
+                    function doThing() {
+
+                        var pass = document.getElementById("pass").value;
+                        pass = String(pass);
+                        if (pass.length < 8) {
+                            // console.log("inside if");
+                            document.getElementById("lowpass").innerHTML = "Weak password";
+                        }
+
+                        //function doThingagain() {
+                        else {
+                            var confirm = document.getElementById("passagain").value;
+                            confirm = String(confirm)
+                            if (pass == confirm) {
+                                console.log("confirm = " + confirm)
+                                document.getElementById("lowpass").innerHTML = "";
+                                document.getElementById("submit").style.backgroundColor = " rgb(30, 253, 0)";
+                                alert("correct");
+                                submit.disabled  = false
+                            } else {
+                                if (confirm == "") {
+
+                                    document.getElementById("lowpass").innerHTML = "";
+                                }
+                                else {
+                                    document.getElementById("lowpass").innerHTML = "Passwords doesn't match";
+                                }
+                            }
+                        }
+
+                    }
+
+
+                    function myFunction() {
+                        var y = document.getElementById("passagain");
+                        if (y.type === "password") {
+
+
+                            y.type = "text";
+                        } else {
+
+
+                            y.type = "password";
+                        }
+                    }
+
+
+
+                </script>
+
+
+
+
+            </div>
+
+            <div class='buttons'>
+
+                <button type="button" class="btn" id="prev" disabled>
+                    Prev
+                </button>
+              
+                    <button type="button" class="btn" id="next" >Next</button>
+              
+              
+                <!-- action="/newusersubmit"  method="post" -->
+                <button type="submit" class="btn" id="submit" style="display: none;background-color:rgb(124, 124, 124)"
+                    onclick="fun()">Submit</button>
+
+            </div>
+
+        </form>
+
+
+
+        <script>
+            
+            const progress = document.getElementById("progress");
+
+            const prev = document.getElementById("prev");
+
+            const next = document.getElementById("next");
+
+            const submit = document.getElementById("submit");
+
+            const circles = document.querySelectorAll(".circle");
+
+            let currentActive = 1;
+
+
+            next.addEventListener("click", () => {
+
+                currentActive++;
+
+                if (currentActive > circles.length) {
+                    currentActive = circles.length
+                }
+
+
+                update();
+
+            })
+
+
+            prev.addEventListener("click", () => {
+
+                currentActive--;
+
+                if (currentActive < 1) {
+
+                    currentActive = 1;
+
+                }
+                update();
+
+
+            })
+
+            function update() {
+
+                circles.forEach((circle, idx) => {
+
+
+                    if (idx < currentActive) {
+
+                        circle.classList.add("active")
+
+                    } else {
+                        circle.classList.remove("active")
+                    }
+
+
+                })
+
+                const actives = document.querySelectorAll(".active")
+
+
+                progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + "%";
+
+                if (currentActive === 1) {
+
+                    prev.disabled = true;
+
+
+                    next.style.display = "inline";
+                    submit.style.display = "none";
+
+                } else if (currentActive === circles.length) {
+                    // next.disabled = true;
+                    next.style.display = "none";
+                    submit.style.display = "inline";
+
+                } else {
+
+                    next.style.display = "inline";
+                    submit.style.display = "none";
+
+                    prev.disabled = false;
+                    next.disabled = false;
+
+                }
+                console.log("currentActive :", currentActive);
+                if (currentActive == 1) {
+                    document.getElementById("box1").style.display = "block";
+                    document.getElementById("box2").style.display = "none";
+
+                }
+                if (currentActive == 2) {
+                    document.getElementById("box1").style.display = "none";
+                    document.getElementById("box3").style.display = "none";
+                    document.getElementById("box2").style.display = "block";
+
+                }
+                if (currentActive == 3) {
+                    document.getElementById("box3").style.display = "block";
+                    document.getElementById("box2").style.display = "none";
+                    document.getElementById("box4").style.display = "none";
+                    setInterval(cheack_user, 1000);
+
+                }
+                if (currentActive == 4) {
+                    document.getElementById("box4").style.display = "block";
+                    document.getElementById("box5").style.display = "none";
+                    document.getElementById("box3").style.display = "none";
+                    next.disabled = true;
+
+                    document.getElementById("next").addEventListener("onmousemove", cheack_user)
+                }
+                if (currentActive == 5) {
+                    document.getElementById("box5").style.display = "block";
+                    document.getElementById("box4").style.display = "none";
+                    next.setAttribute.display = "none";
+                    submit.disabled = true
+
+                    document.getElementById("next").removeEventListener("onmousemove", cheack_user)
+                }
+
+
+            }
+        </script>
+        <script>
+            function cheack_user() {
+                console.log("inside cheack_user");
+                if (currentActive == 4) {
+                    console.log("inside cheack_user for 4");
+                    var username = document.getElementById("userid").value;
+                    if (username == " ") {
+                        document.getElementById("usermsg").innerHTML = " ";
+                        return
+                    }
+                    if (String(username).length < 3) {
+                        document.getElementById("usermsg").style.color = "red"
+                        document.getElementById("usermsg").innerHTML = "Atleast 3 characters";
+                        return
+                    }
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', '/username/' + username, true);
+
+                    xhr.onload = function () {
+
+                        if (this.responseText == "True") {
+                            console.log("true ******** ")
+                            document.getElementById("usermsg").innerHTML = "User name Available";
+                            document.getElementById("usermsg").style.color = "green"
+                            //  document.getElementById("userdiv").style.border = "2px solid green"
+                            next.disabled = false;
+                        }
+                        else {
+                            console.log("fasle ******** ")
+                            document.getElementById("usermsg").innerHTML = "User name Not Available";
+                            next.disabled = true;
+                            document.getElementById("usermsg").style.color = "red"
+                            //document.getElementById("userdiv").style.border = "2px solid red"
+                        }
+                    }
+                    xhr.send();
+                }
+
+
+                // Send the request
+
+            }
+        </script>
+    </body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Add new User</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<style>
+    #pay{
+        margin-top: 20px;
+        text-align: center;
+        border: 3px;
+        border-style:double;
+        border-radius: 25px;
+    
+        font-size: 30px;
+        margin-left: 100px;
+        margin-right: 100px;
+        background-color: rgb(218, 255, 10);
+
+    }
+
+    #or{
+        text-align: center;
+        font-size: 25px;
+       
+         height: 300px;
+         margin-left: 150px;
+        margin-right: 150px;
+
+    }
+    .abc{
+        font-size: 28px;
+    }
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 30%;
+        padding: 10px;
+        height: 1%;
+        /* Should be removed. Only for demonstration */
+      
+        margin-bottom: 1%;
+
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+
+        display: table;
+        clear: both;
+    }
+    p{
+        text-align: center;
+    }
+
+   
+</style>
+<body>
+    <div id='pay'><b>Add New User</b> </div>
+
+    
+    
+<br>{% if status != "" %}
+<p style="text-align: center;color:rgb(240, 0, 0);size:10px"> 
+  {{status}}
+</p>
+
+{% endif %}<br>
+    <form action="/newusersubmit"  method="post">
+
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Name   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="text" id="name" name="name" style="border: 2px black solid;" ></p></h4>
+
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Email   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="email" id="email" name="email" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Phone   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="tel" id="phone" name="phone"  maxlength="12" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>Birth Date   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="date" id="birthday" name="birthday" value="Birth Date" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>userid   :</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="text" id="userid" name="userid" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" >
+                <h4> <p>password:</p></h4>
+            </div>
+            
+            <div class="column" style=" margin-left: 1%;">
+               <h4> <p > <input type="text" id="pas" name="pas" style="border: 2px black solid;"></p></h4>
+
+            </div>
+        </div>
+
+        <div>
+        <button type="submit" class="btn btn-outline-dark" style=" font-size: 20px;margin-top:5px;width:60% ; margin-left:20%">Create New Account</button>
+    </div> </form>
+<br>
+<br>
+<br>
+
+</body>
+</html> -->

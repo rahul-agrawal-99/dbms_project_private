@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+/* /* Style the form */
+#regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    padding-top: 20px;
+    width: 30%;
+    min-width: 300px;
+    border-radius: 5px;
+    box-shadow: #610808;
+}
+
+/* Style the input fields */
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+    background-color: #fde3e3;
+}
+
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
+
+input{
+     
+        margin-bottom: 10px;
+        border-radius: 2px;
+        position: relative;
+}
+ 
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+    opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+    background-color: #9d9d9d;
+}
+
+
+
+
+
+
+
+
+body {
+    background-color: #9b59b6;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh;
+    margin: 0;
+}
+
+ 
+h1{
+    
+    font-size: 1.5rem;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.header{
+    justify-content: center;
+    text-align: center;
+}
+.btn {
+    overflow: auto;
+    float: right;
+    display: flex;
+    justify-items: space-between;
+}
+
+#prevBtn,
+#nextBtn {
+    background-color: #8e44ad;
+    border: 2px solid #8e44ad;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 100%;
+}
+ 
+.step{
+    text-align: center;
+    margin-top: 40px;
+    justify-content: center;
+    justify-items: center;
+}
+
+
+.step.active {
+    background-color: #8e44ad;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+

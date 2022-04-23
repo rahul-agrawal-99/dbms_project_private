@@ -81,6 +81,7 @@ def get_card_details(id):
     q=f"select * from card_details where cid='{id}'"
     r=print_val(c,q)
     return r
+
 def get_cvv(crd):     
     db="mini"
     c=connect("localhost",f'{u}','rahul',db)
@@ -105,11 +106,25 @@ def make_payment(crd_no ,payable_amout):
         commit(connect("localhost",u,p,db))
         # print(" upadted_card_bal = ",card_bal,"-",payable_amout , "= ",upadted_card_bal)
         return upadted_card_bal
-        
-def transaction(oid,cid,amount):
+    
+def convertList(list1):  
+    str = ''  # initializing the empty string  
+    for i in list1: #Iterating and adding the list element to the str variable  
+        str += i + ","  
+    return str   
+ 
+def transaction(oid,cid,product,amount):
     d,t=get_datetime_today()
-    r=d+" "+t
-    q=f"insert into transaction_history values ({oid},'{cid}',{amount},'{r}')"
+    s=get_product_name()
+    p = []
+    for index,i in enumerate(product):
+        if i != 0:
+            p.append(f"{s[index][0]} : {s[index][3]}")
+            
+    q=f"insert into purchase_details values ('{oid}','{cid}','{convertList(p)}',{amount},'{d}')"
+    # q=f"insert into transaction_history values ('{oid}','{convertList(product)}','{cid}',{amount},'{d}')"
+    print("Query is ",q)
+    # order_id TEXT PRIMARY KEY,cid TEXT(500),products  TEXT,total_cart_calue INTEGER ,date date
     execute_query(connect("localhost",u,p,db),q)
     commit(connect("localhost",u,p,db))   
     
@@ -147,7 +162,7 @@ def get_product_details_by_id(id):
 def get_transaction_details():   
     db="mini"
     c=connect("localhost",f'{u}','rahul',db)
-    q=f"select * from transaction_history "
+    q=f"select * from purchase_details "
  
     r=print_val(c,q)
     return r
@@ -162,6 +177,15 @@ def get_accound(id):
     r=print_val(c,q)
     
     return r[0]
+
+def check_user(name):     
+    db="mini"
+    c=connect("localhost",f'{u}','rahul',db)
+    q=f"select id from project_login where id='{name}'"
+    # print(q)
+    r=print_val(c,q)
+    
+    return r
   
         
 def check_login(i,pas):  #data stored in  Flask_data 
@@ -251,6 +275,14 @@ def purchased_products(plist):
             b=get_product_details_by_id(index+1)
             li.append((b[0] , b[2]*i ,i))
         
-    return li          
+    return li         
+
+
+def purcahsed_products_details(oid,cid,products,total_price,date):
+    q=f"insert into transaction_history values ({oid},{cid},'{products}',{total_price},'{date}')"
+    # print(q)
+    execute_query(connect("localhost",u,p,db),q)
+    commit(connect("localhost",u,p,db))
+
 
     

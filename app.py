@@ -186,7 +186,7 @@ def payment():
         new_bal = db.make_payment(crd[0][1] , tpl)
         if new_bal==False:
             return "Your Card Dont Have Enough Balance "
-        db.transaction(order_id[len(order_id)-1],cid['id'],tpl)
+        db.transaction(order_id[len(order_id)-1],cid['id'],p , tpl)
         o=order_id[len(order_id)-1]
         db.update_orders(p,o)
         products =db.purchased_products(p)
@@ -199,25 +199,27 @@ def payment():
 @app.route("/newusersubmit",methods=['POST','GET'])    
 def newuserlogin():
     if request.method=='POST':
-      name = request.form['name']
+      fname = request.form['fname']
+      lname = request.form['lname']
+      name = fname+" "+lname
       email = request.form['email']
       phone = request.form['phone']
       bday=request.form['birthday']
       userid = request.form['userid']
       pas = request.form['pas']
       status=db.insert_new_user(name,email,phone,bday,userid,pas)
-    if status=='blanku':
-        return render_template('newuser.html' , status='Blank UserID Not allowed')
-    if status=='blankp':
-        return render_template('newuser.html' , status='Password id Blank')
+    # if status=='blanku':
+    #     return render_template('newuser.html' , status='Blank UserID Not allowed')
+    # if status=='blankp':
+    #     return render_template('newuser.html' , status='Password id Blank')
     if status=='exist':
         return render_template('newuser.html' , status='UserID already Exist Please enter another')
-    if status=='blankbday':
-        return render_template('newuser.html' , status='Enter Birth Date')
-    if status=='blankname':
-        return render_template('newuser.html' , status='Namespace is Blank Please Enter Name')
-    if status=='noage':
-        return render_template('newuser.html' , status='Check Birthdate , You should be atleast 15 yaers old to eligible to create account')
+    # if status=='blankbday':
+    #     return render_template('newuser.html' , status='Enter Birth Date')
+    # if status=='blankname':
+    #     return render_template('newuser.html' , status='Namespace is Blank Please Enter Name')
+    # if status=='noage':
+    #     return render_template('newuser.html' , status='Check Birthdate , You should be atleast 15 yaers old to eligible to create account')
     return render_template('index.html' , status='new')
        
        
@@ -228,6 +230,14 @@ def newuserlogin():
 @app.route("/add_card_render",methods=['POST','GET'])    
 def add_card_r():
     return render_template('add_card.html' )
+
+
+@app.route("/username/<string:name>",methods=['POST','GET'])    
+def check_name(name):
+    user = db.check_user(name)
+    if len(user) == 0:
+        return "True"
+    return "False"
 
 
 @app.route("/add_card",methods=['POST','GET'])    
@@ -249,9 +259,9 @@ def add_card():
     return render_template('customer_login.html' , status=c)
 
 
-if __name__ == "__main__":
-    # app.run(host='0.0.0.0' , port=5000)
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0' , port=5000)
+    #app.run(debug=True)
 
 # app.run()            # for Production
-# app.run(debug=True)          # for testing
+app.run(debug=True)          # for testing
