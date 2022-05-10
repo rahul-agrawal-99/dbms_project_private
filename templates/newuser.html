@@ -137,14 +137,67 @@ h1{
     background-color: #8e44ad;
     color: #fff;
 }
+#user{
+    width: 80%;
+}
+
+#mybtn{
+    background-color: #8e44ad;
+    border: 2px solid #8e44ad;
+    border-radius: 4px;
+    color: #fff;
+    display: inline;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    width: 16%;
+}
 
 </style>
 
 <body>
+    <script>
+        function cheack_user() {
+            console.log("inside cheack_user");
+            var username = document.getElementById("user").value;
+                if (String(username).length < 3) {
+                    console.log("inside if len less 3");
+                    document.getElementById("usermsg").style.color = "red"
+                    document.getElementById("usermsg").innerHTML = "Atleast 3 characters";
+                    return
+                }
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '/username/' + username, true);
+
+                xhr.onload = function () {
+
+                    if (this.responseText == "True") {
+                        console.log("true ******** ")
+                        document.getElementById("usermsg").style.color = "green"
+                        document.getElementById("usermsg").innerHTML = "User name Available";
+                        document.getElementById("nextBtn").disabled = false;
+                        document.getElementById("nextBtn").style.backgroundColor = "#8e44ad";
+                    }
+                    else {
+                        console.log("fasle ******** ")
+                        document.getElementById("usermsg").style.color = "red"
+                        document.getElementById("usermsg").innerHTML = "User name Not Available";
+                        document.getElementById("nextBtn").style.backgroundColor = "grey";
+                        document.getElementById("nextBtn").disabled = true;
+
+                    }
+                }
+                xhr.send();
+            }
+
+        
+    </script>
+   
     <form id="regForm" action="/newusersubmit" method="post">
 
         <div class="header">
             <h1>New User Registration</h1>
+            {{status}}
             
         </div>
 
@@ -160,7 +213,11 @@ h1{
 
 
         <div class="tab"> 
-            <p>User name<input placeholder="Username..." oninput="this.className = ''" name="userid"></p>
+            <p>User name
+            </p>
+                <input placeholder="Username..." oninput="this.className = ''" name="userid" id="user">
+                <div id="mybtn" onclick="cheack_user()">Check</div>
+                <span id='usermsg' style="color: red;">Enter Username </span>
             <p>password<input placeholder="Password..." id="password" oninput="this.className = ''" name="pas" type="password" minlength="5"></p>
             <p>Confirm password<input placeholder="Confirm Password..." id="confirm_password" oninput="this.className = ''" minlength="5"></p>
         </div>
@@ -201,8 +258,12 @@ function showTab(n) {
     }
     if (n == (x.length - 1)) {
         document.getElementById("nextBtn").innerHTML = "Submit";
+        document.getElementById("nextBtn").style.backgroundColor = "grey";
+        document.getElementById("nextBtn").disabled = true;
     } else {
         document.getElementById("nextBtn").innerHTML = "Next";
+        document.getElementById("nextBtn").disabled = false;
+        document.getElementById("nextBtn").style.backgroundColor = "#8e44ad";
     }
     // ... and run a function that displays the correct step indicator:
     fixStepIndicator(n)
@@ -264,11 +325,15 @@ var password = document.getElementById("password")
     , confirm_password = document.getElementById("confirm_password");
 
 function validatePassword() {
-    if (password.value != confirm_password.value) {
-        confirm_password.setCustomValidity("Passwords Don't Match");
-    } else {
-        confirm_password.setCustomValidity('');
-    }
+    if (String(password.value)  > 3) {
+                if (password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Passwords Don't Match");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            } else {
+                confirm_password.setCustomValidity("At Least 4 characters");
+            }
 }
 
 password.onchange = validatePassword;

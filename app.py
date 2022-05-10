@@ -22,7 +22,8 @@ def log():
         if valid=="yes":
             cid['id']=i
             cid['name']=db.get_name(i)
-            return render_template('customer_login.html' , cid=cid['id'] ,cname=cid['name'])
+            s=db.get_product_name()
+            return render_template('product.html' , cid=cid['id'] ,cname=cid['name'] ,  jk=s , total = len(s))
         elif valid=='no':
             return render_template('index.html' , status=True)
         else:

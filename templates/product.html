@@ -38,15 +38,17 @@
             position: relative;
             
         }
-        img:hover{
+
+        .container img:hover{
             transform: scale(1.2);
             border: 1px solid black;
 
         }
+     
 
 
 
-        img {
+        .container img {
 
             margin: auto;
 
@@ -332,13 +334,17 @@
             overflow: hidden;
 
             padding: 20px 10px;
-            display: flex;
+          
             justify-content: space-between;
-            align-items: flex-end;
+           
             width: 100%;
 
         }
 
+        .header a img {
+            width: 20%;
+            height: 20%;
+        }
         .header a {
             float: left;
             color: black;
@@ -371,9 +377,16 @@
         .header-right {
             float: right;
         }
-
+        .header img{
+            float: right;
+            width: 5%;
+        }
+       
         /* for mobiles */
         @media screen and (max-width: 550px) {
+            #he{
+                font-size: 100%;
+            }
             *{
              
                 margin: 0px;
@@ -496,6 +509,7 @@
         @media screen and (min-width: 851px) {
             .container {
                 width: 23%;
+                grid-gap: 4rem;
 
             }
         }
@@ -565,27 +579,35 @@
             width: 100%;
 
         }
+        #he{
+            font-size: 400%;
+        }
+    
+      
     </style>
 
     <body>
 
-
-        <div class="header">
-
-            <a href="#default" class="logo"> Mini Shop
+        <div style="display: grid;grid-template-columns: 8fr 1fr 1fr 1fr;margin-top:1%">
+           <h1 id="he">Mini Shop</h1>
+            <a href='/card'>
+                <img src='/static/assets/images/card.png'  width="50%" height="50%" >
             </a>
-
-            <!-- <div class="header-right">
-                <a class="active btn btn-danger" href="\" id="logout">Log Out</a>
-
-            </div> -->
-           
-                <img src='/static/assets/images/cart.png'  width="1px" height="1px">
-
+            <a href='/get_acc_deatils'>
+                <img src='/static/assets/images/profile.png'  width="50%" height="50%" >
+            </a>
+            <img src='/static/assets/images/cart.png'  width="30px" height="50px" onclick="checkout()" id="cc">
         </div>
 
 
+    <hr>
 
+
+        <script>
+            function checkout() {
+                document.getElementById("login").click();
+            }
+        </script>
 
 
 
@@ -705,7 +727,7 @@
             <br>
             <br>
            
-            <button type="submit" id="login" class="button"><span>Checkout </span></button>
+            <button type="submit" id="login" class="button" hidden><span>Checkout </span></button>
 
 
         </form>
